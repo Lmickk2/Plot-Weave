@@ -143,3 +143,7 @@ a:hover {
 .single-post a {
   color: black !important;
 }
+
+.post-container {
+  text-align: left;
+}

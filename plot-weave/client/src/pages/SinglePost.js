@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { Helmet } from "react-helmet";
 import { QUERY_SINGLE_POST } from "../utils/queries";
+import { Link } from "react-router-dom";
 
 const SinglePost = () => {
   const { postId } = useParams();
@@ -20,11 +21,12 @@ const SinglePost = () => {
       .replace(/\s+/g, "-")
       .toLowerCase();
     return {
-      href: `/weave/${postId}/${url}`,
+      href: `/weave/${postId}/${url}?sentenceIndex=${sentenceIndex}&sentenceText=${sentenceText}`,
       "data-text": sentenceText.trim() + ".",
       onClick: () => setClickedSentence(sentenceIndex, sentenceText)
     };
   };
+  
 
   const [hoveredSentence, setHoveredSentence] = useState(null);
   const [clickedSentence, setClickedSentence] = useState(null);
@@ -39,6 +41,21 @@ const SinglePost = () => {
 
   const sentences = post.postText.split(". ");
 
+  const sentenceClicked = (index) => {
+    setClickedSentence(index);
+    setHoveredSentence(null);
+  }
+
+  const sentencesWithActions = sentences.map((sentence, index) => {
+    return {
+      text: sentence.trim() + ".",
+      actions: weaveSentence(index, sentence),
+      onClick: () => sentenceClicked(index)
+    }
+  });
+
+  const clickedSentences = sentencesWithActions.slice(0, clickedSentence + 1);
+
   return (
     <div className="appear single-post">
       <Helmet>
@@ -51,15 +68,15 @@ const SinglePost = () => {
           <span style={{ fontSize: "1rem" }}>{post.createdAt}</span>
         </h3>
         <div className="post-container">
-          {sentences.map((sentence, index) => (
+          {sentencesWithActions.map((sentence, index) => (
             <span key={index}>
               <a
-                {...weaveSentence(index, sentence)}
+                {...sentence.actions}
                 onMouseEnter={() => setHoveredSentence(index)}
                 onMouseLeave={() => setHoveredSentence(null)}
-                onClick={() => setClickedSentence(index, sentence)}
+                onClick={sentence.onClick}
               >
-                {sentence.trim() + "."}
+                {sentence.text}
               </a>
 
               {hoveredSentence === index && (

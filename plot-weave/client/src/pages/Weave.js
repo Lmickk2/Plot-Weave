@@ -1,50 +1,25 @@
 import React, { useState, useEffect } from "react";
-// import { Link } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
+import { useLocation } from "react-router-dom";
+import { ADD_WEAVE } from "../utils/mutations";
 
-import { ADD_POST, ADD_WEAVE } from "../utils/mutations";
-import { QUERY_POSTS, QUERY_WEAVES } from "../utils/queries";
+const Weave = () => {
+  const { search } = useLocation();
+  const queryParams = new URLSearchParams(search);
+  const sentenceIndex = queryParams.get("sentenceIndex");
+  const sentenceText = queryParams.get("sentenceText");
 
-import Auth from "../utils/auth";
-import NotAuthorized from "../Components/NotAuthorized";
-import { Helmet } from "react-helmet";
+  const [postText, setPostText] = useState("");
 
+  useEffect(() => {
+    if (sentenceText) {
+      setPostText(sentenceText);
+    }
+  }, [sentenceText]);
 
-const Weave = ({ sentenceText }) => {
-  const [postText, setPostText] = useState(sentenceText);
   const [weaveTitle, setWeaveTitle] = useState("");
 
-  const [characterCount, setCharacterCount] = useState(0);
-
-  const [addPost, { error }] = useMutation(ADD_POST, {
-    update(cache, { data: { addPost } }) {
-      try {
-        const posts = cache.readQuery({ query: QUERY_POSTS });
-
-        cache.writeQuery({
-          query: QUERY_POSTS,
-          data: { posts: [addPost, posts] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-    },
-  });
-
-  const [addWeave] = useMutation(ADD_WEAVE, {
-    update(cache, { data: { addWeave } }) {
-      try {
-        const weaves = cache.readQuery({ query: QUERY_WEAVES });
-
-        cache.writeQuery({
-          query: QUERY_WEAVES,
-          data: { weaves: [addWeave, weaves] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-    },
-  });
+  const [addWeave, { error }] = useMutation(ADD_WEAVE);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -54,7 +29,6 @@ const Weave = ({ sentenceText }) => {
         variables: {
           weaveTitle,
           postText,
-          weaveAuthor: Auth.getProfile().data.username,
         },
       });
       setWeaveTitle("");
@@ -64,16 +38,11 @@ const Weave = ({ sentenceText }) => {
     }
   };
 
-  useEffect(() => {
-    setPostText(sentenceText);
-  }, [sentenceText]);
-
   const handleChange = (event) => {
     const { name, value } = event.target;
 
     if (name === "postText" && value.length <= 3000) {
       setPostText(value);
-      setCharacterCount(value.length);
     }
 
     if (name === "weaveTitle" && value.length <= 80) {
@@ -82,61 +51,40 @@ const Weave = ({ sentenceText }) => {
   };
 
   return (
-    <div className="appear top-pad">
-      <Helmet>
-        <title>Plot Weave | Your Story</title>
-      </Helmet>
-
-      {Auth.loggedIn() ? (
-        <>
-          <div className="post-form">
-            <form
-              id="spacing"
-              className="flex-row justify-center justify-space-between-md align-center"
-              onSubmit={handleFormSubmit}
-            >
-              <div className="post-title">
-                <textarea
-                  name="weaveTitle"
-                  placeholder="Title"
-                  value={weaveTitle}
-                  className="title-input"
-                  onChange={handleChange}
-                ></textarea>
-              </div>
-              <div className="question-post">
-                <textarea
-                  name="postText"
-                  placeholder="Start Writing!"
-                  value={postText}
-                  className="post-input"
-                  style={{ lineHeight: "1.5", resize: "vertical" }}
-                  onChange={handleChange}
-                ></textarea>
-              </div>
-              <p
-                className={`type-white ${
-                  characterCount === 3000 || error ? "text-danger" : ""
-                }`}
-              >
-                Character Count: {characterCount}/3000
-              </p>
-
-              <button className="start" type="submit">
+    <div>
+      <h2>Weave</h2>
+      <div className="post-form">
+      <form
+          id="spacing"
+            className="flex-row justify-center justify-space-between-md align-center"
+            onSubmit={handleFormSubmit}
+          >
+      <div className="post-title">
+          <label htmlFor="weaveTitle"></label>
+          <input
+            type="text"
+            placeholder="Title"
+            name="weaveTitle"
+            value={weaveTitle}
+            className="title-input"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="question-post">
+          <label htmlFor="postText"></label>
+          <textarea
+            name="postText"
+            value={postText}
+            className="post-input"
+            style={{ lineHeight: '1.5', resize: 'vertical' }}
+            onChange={handleChange}
+          />
+        </div>
+        <button className="start" type="submit">
                 Create Post !
               </button>
-
-              {error && (
-                <div className="col-12 my-3 bg-danger text-white p-3">
-                  {error.message}
-                </div>
-              )}
-            </form>
-          </div>
-        </>
-      ) : (
-        <NotAuthorized />
-      )}
+      </form>
+      </div>
     </div>
   );
 };
