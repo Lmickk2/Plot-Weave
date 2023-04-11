@@ -1,0 +1,145 @@
+/* HEADER */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.navbar {
+  background-color: rgba(6,223,133,255) !important;
+  height: 70px;
+}
+
+.navbar-collapse {
+  justify-content: space-between !important;
+  text-align: center !important;
+}
+
+.nav-link {
+  cursor: pointer !important;
+}
+
+.navbar-nav {
+  background-color: rgba(6,223,133,255) !important;
+}
+
+#logo-large {
+  margin-right: 10rem;
+}
+
+a {
+  color: white !important;
+  text-decoration: none;
+}
+
+a:hover {
+  text-shadow: -1px 1px 2px rgba(255, 255, 255, 0.466);
+  text-decoration: none;
+}
+
+#logo-small {
+  max-width: 50px;
+}
+
+#logo-large {
+  max-width: 120px;
+}
+
+.navbar-toggler {
+  border: transparent !important;
+}
+
+.navbar-toggler-icon {
+  color: black !important;
+}
+
+/* HOME */
+
+.hero {
+    margin-top: 15%;
+    display: flex;
+}
+
+.intro {
+    width: 40%;
+    margin-left: 5%;
+}
+
+.intro h1 {
+    font-size: 52px;
+}
+
+.demo {
+    width: 60%;
+}
+
+.weave {
+    height: 400px;
+    margin-top: -15% !important;
+    margin-left: 15%;
+    box-shadow: -2px 1px 15px rgba(0, 0, 0, 0.178);
+}
+
+.start {
+    background-color: rgba(6,223,133,255);
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    box-shadow: -2px 1px 5px rgba(0, 0, 0, 0.473);
+}
+
+.section-2 {
+    margin-top: 15%;
+    margin-bottom: 20%;
+}
+
+.section-2 h1 {
+    font-size: 52px;
+}
+
+.section-2 img {
+    margin-top: 5%;
+    width: 600px;
+}
+
+/* CREATE STORY */
+
+.post-form {
+  margin-top: 5%;
+}
+
+
+.title-input {
+  font-family: 'Times New Roman', Times, serif;
+  border: none;
+  width: 70%;
+  font-size: 42px;
+  height: 5rem;
+  outline: 0px transparent;
+  border-bottom: 0.1rem solid #00000036;
+}
+
+.post-input {
+  margin-top: 2rem;
+  font-family: 'Times New Roman', Times, serif;
+  width: 70%;
+  outline: 0px transparent;
+  border: 0.1rem solid #00000036;
+  height: 20rem;
+}
+
+/* SINGLE POST */
+
+.single-post {
+  font-family: 'Times New Roman', Times, serif;
+  width: 70%;
+  margin: auto;
+}
+
+.created-by {
+  font-size: 42px;
+}
+
+.single-post a {
+  color: black !important;
+}
