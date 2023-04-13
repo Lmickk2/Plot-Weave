@@ -76,6 +76,7 @@ const Weave = () => {
             name="postText"
             value={postText}
             className="post-input"
+
             style={{ lineHeight: '1.5', resize: 'vertical' }}
             onChange={handleChange}
           />

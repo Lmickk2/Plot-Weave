@@ -48,12 +48,12 @@ const Login = (props) => {
       </Helmet>
     <div className="large-container-center">
     <div className="login-cont">
-      <h2>LOGIN</h2>
+      <h2>Login</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="enter-cred">
           <label htmlFor="email" ></label>
           <input
-            placeholder="youremail@test.com"
+            placeholder="YourEmail@mail.com"
             name="email"
             type="email"
             value={formState.email}
@@ -64,7 +64,7 @@ const Login = (props) => {
         <div className="enter-cred">
           <label htmlFor="pwd"></label>
           <input
-            placeholder="password"
+            placeholder="Password"
             name="password"
             type="password"
             value={formState.password}
@@ -78,9 +78,9 @@ const Login = (props) => {
           </div>
         ) : null}
         <div className="log-btns">
-          <button type="submit" className="flashy-btn">Submit</button>
+          <button type="submit" className="start">Login</button>
           <p className="or">Or</p>
-      <button className="flashy-btn"><Link to="/signup" >Signup</Link></button>
+      <button className="start"><Link to="/signup" >Signup</Link></button>
           </div>
       </form>
       

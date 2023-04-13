@@ -57,6 +57,7 @@ const SinglePost = () => {
   const clickedSentences = sentencesWithActions.slice(0, clickedSentence + 1);
 
   return (
+    <div className="post-section">
     <div className="appear single-post">
       <Helmet>
         <title>Plot Weave | {post.postTitle}</title>
@@ -98,6 +99,14 @@ const SinglePost = () => {
         </div>
       </div>
       <div className="cont-space"></div>
+    </div>
+    <div className="author-info">
+      <div className="author-header">
+      <h3>{post.postAuthor}</h3>
+      <p>Writing student from UM. 20 years old</p>
+      </div>
+      <p>View more from {post.postAuthor}</p>
+    </div>
     </div>
   );
 };

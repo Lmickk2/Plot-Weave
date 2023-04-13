@@ -10,7 +10,7 @@ const weaveSchema = new Schema({
     maxlength: 50,
     trim: true,
   },
-  weaveText: {
+  postText: {
     type: String,
     required: 'You need some text!',
     minlength: 1,

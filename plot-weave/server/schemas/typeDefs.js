@@ -42,7 +42,7 @@ const typeDefs = gql`
   type Weave {
     _id: ID
     weaveTitle:String
-    weaveText: String
+    postText: String
     weaveAuthor: String
     createdAt: String
     comments: [Comment]!
@@ -55,7 +55,7 @@ const typeDefs = gql`
     addComment(postId: ID!, commentText: String!): OriginalPost
     removePost(postId: ID!): OriginalPost
     removeComment(postId: ID!, commentId: ID!): OriginalPost
-    addWeave(weaveText: String!, weaveTitle:String!): Weave
+    addWeave(postText: String!, weaveTitle:String!): Weave
   }
 `;
 

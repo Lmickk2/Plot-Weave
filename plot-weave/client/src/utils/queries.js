@@ -32,7 +32,7 @@ export const QUERY_WEAVES = gql`
     weaves {
       _id
       weaveTitle
-      weaveText
+      postText
       weaveAuthor
       createdAt
     }

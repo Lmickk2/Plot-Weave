@@ -6,11 +6,11 @@ function NotAuthorized() {
         You need to be logged in to access this page. Please:
         <div className="log-btns">
           <Link to="/login">
-            <button className="flashy-btn">Login</button>
+            <button className="start">Login</button>
           </Link>
           <p className="or">Or</p>
           <Link to="/signup">
-            <button className="flashy-btn">Signup</button>
+            <button className="start">Signup</button>
           </Link>
         </div>
       </p>

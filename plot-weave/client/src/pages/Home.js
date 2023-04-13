@@ -14,10 +14,13 @@ function Home() {
                 <img src={weave} className="weave"/>
             </div>
         </div>
+        {/* <div className="divider"></div> */}
         <div className="section-2">
-            <h1>Write Your Own Stories</h1>
-            <p>See how community members weave your stories to create new storylines, characters, and more!</p>
-            <img src={book}/>
+            <h1>What's Trending</h1>
+            <div className="featured-posts">
+                
+            </div>
+            
         </div>
         </>
     )

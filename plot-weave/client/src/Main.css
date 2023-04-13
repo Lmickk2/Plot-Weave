@@ -3,7 +3,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 .navbar {
-  background-color: rgba(6,223,133,255) !important;
+  background-color: rgba(7,233,133,255) !important;
   height: 70px;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .navbar-nav {
-  background-color: rgba(6,223,133,255) !important;
+  background-color: rgba(7,233,133,255) !important;
 }
 
 #logo-large {
@@ -25,7 +25,7 @@
 }
 
 a {
-  color: white !important;
+  color: black !important;
   text-decoration: none;
 }
 
@@ -53,8 +53,11 @@ a:hover {
 /* HOME */
 
 .hero {
-    margin-top: 15%;
+    padding-top: 15%;
     display: flex;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(6,233,133,1) 75%);
+    background-size: cover;
+    height: 100vh;
 }
 
 .intro {
@@ -63,7 +66,8 @@ a:hover {
 }
 
 .intro h1 {
-    font-size: 52px;
+    font-size: 68px;
+    font-family: 'Libre Baskerville', serif;
 }
 
 .demo {
@@ -78,7 +82,7 @@ a:hover {
 }
 
 .start {
-    background-color: rgba(6,223,133,255);
+    background-color: rgba(7,233,133,255);
     color: white;
     border-radius: 0.5rem;
     padding: 0.5rem;
@@ -88,13 +92,20 @@ a:hover {
     box-shadow: -2px 1px 5px rgba(0, 0, 0, 0.473);
 }
 
+.divider {
+  margin-top: 9%;
+  background-color: black;
+  height: 3rem;
+}
+
 .section-2 {
-    margin-top: 15%;
     margin-bottom: 20%;
 }
 
 .section-2 h1 {
-    font-size: 52px;
+    font-size: 26px;
+    text-align: left;
+    margin-left: 10%;
 }
 
 .section-2 img {
@@ -130,20 +141,91 @@ a:hover {
 
 /* SINGLE POST */
 
+.post-section {
+  display: flex;
+}
+
 .single-post {
   font-family: 'Times New Roman', Times, serif;
-  width: 70%;
-  margin: auto;
+  width: 40%;
+  margin-left: 10%;
+  margin-top: 10%;
+
 }
 
 .created-by {
-  font-size: 42px;
+  font-size: 44px;
+  font-weight: bold;
+  text-align: left;
 }
 
 .single-post a {
   color: black !important;
+  font-size: 20px;
 }
 
 .post-container {
   text-align: left;
+}
+
+.author-info {
+  margin-left: 10%;
+  text-align: left;
+  width: 40%;
+  background: rgba(7,233,133,255);
+  height: 100vh;
+}
+
+.author-header {
+  background: white !important;
+}
+
+.author-info h3 {
+  padding-top: 5%;
+  margin-left: 5%;
+}
+
+.author-info p {
+  margin-left: 5%;
+}
+
+/* LOGIN */
+
+
+.login-cont {
+  margin: auto;
+  margin-top: 5rem;
+  height: 30rem;
+  width: 30%;
+  border-radius: 1rem;
+  box-shadow: -2px 2px 20px rgba(0, 0, 0, 0.178);
+}
+
+.enter-cred {
+  margin-top: 2rem;
+}
+
+.cred-input {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  width: 50%;
+  height: 3rem;
+  border: none;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.411);
+}
+
+.log-btns {
+  margin-top: 2rem;
+}
+
+/* NOT AUTH */
+
+.not-logged {
+  font-size: 24px;
+  margin-top: 10%;
+}
+
+.or {
+  font-size: 18px;
+  padding-top: 10px;
 }

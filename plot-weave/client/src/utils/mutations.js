@@ -41,11 +41,11 @@ export const ADD_POST = gql`
 `;
 
 export const ADD_WEAVE = gql`
-  mutation addWeave($weaveText: String!, $weaveTitle: String!) {
-    addWeave(weaveText: $weaveText, weaveTitle: $weaveTitle) {
+  mutation addWeave($postText: String!, $weaveTitle: String!) {
+    addWeave(postText: $postText, weaveTitle: $weaveTitle) {
       _id
       weaveTitle
-      weaveText
+      postText
       weaveAuthor
       createdAt
       comments {
