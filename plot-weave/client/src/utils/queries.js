@@ -6,11 +6,25 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      postts {
+      profilePicture {
+        data
+      }
+      bio
+      posts {
         _id
         postText
         createdAt
       }
+    }
+  }
+`;
+
+export const QUERY_RANDOM_USERS = gql`
+  query randomUsers($limit: Int!) {
+    users(limit: $limit) {
+      _id
+      username
+      bio
     }
   }
 `;
@@ -63,6 +77,8 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      bio
+      profilePicture
       posts {
         _id
         postText

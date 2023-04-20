@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const fs = require('fs');
+const defaultProfilePicture = fs.readFileSync('../client/src/images/profile.png');
 
 const userSchema = new Schema({
   username: {
@@ -25,6 +27,20 @@ const userSchema = new Schema({
       ref: 'OriginalPost',
     },
   ],
+  profilePicture: {
+    data: {
+      type: Buffer,
+      default: defaultProfilePicture,
+    },
+    contentType: {
+      type: String,
+      default: 'image/png',
+    },
+  },
+  bio: {
+    type: String,
+    maxlength: 500,
+  },
 });
 
 userSchema.pre('save', async function (next) {

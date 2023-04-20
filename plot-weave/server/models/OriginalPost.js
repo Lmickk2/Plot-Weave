@@ -24,8 +24,12 @@ const postSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (timestamp) => dateFormat(timestamp),
+    get: (timestamp) => {
+      const date = new Date(timestamp);
+      return date.toLocaleString('en-US', { month: 'long', day: 'numeric' });
+    }
   },
+  
   comments: [
     {
       commentText: {

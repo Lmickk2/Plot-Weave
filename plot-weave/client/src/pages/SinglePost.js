@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import { Helmet } from "react-helmet";
 import { QUERY_SINGLE_POST } from "../utils/queries";
 import { Link } from "react-router-dom";
+import profilepic from "../images/profile.png"
 
 const SinglePost = () => {
   const { postId } = useParams();
@@ -62,6 +63,10 @@ const SinglePost = () => {
       <Helmet>
         <title>Plot Weave | {post.postTitle}</title>
       </Helmet>
+      <div className="author-section">
+      <img src={profilepic}/>
+      <p>{post.postAuthor}</p>
+      </div>
       <div className="my-3">
         <h3 className="created-by right">
           {post.postTitle}
@@ -102,10 +107,11 @@ const SinglePost = () => {
     </div>
     <div className="author-info">
       <div className="author-header">
+      </div>
+      <img src={profilepic}/>
       <h3>{post.postAuthor}</h3>
       <p>Writing student from UM. 20 years old</p>
-      </div>
-      <p>View more from {post.postAuthor}</p>
+      {/* <p>View more from {post.postAuthor}</p> */}
     </div>
     </div>
   );

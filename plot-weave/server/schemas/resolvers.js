@@ -50,6 +50,20 @@ const resolvers = {
 
       return { token, user };
     },
+
+    updateUser: async (parent, { profilePicture, bio }, context) => {
+      if (context.user) {
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { profilePicture, bio },
+          { new: true }
+        ).populate("posts");
+  
+        return user;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    
     addPost: async (parent, { postTitle, postText}, context) => {
       console.log(postTitle,postText)
       if (context.user) {

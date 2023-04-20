@@ -82,7 +82,7 @@ const Signup = () => {
             onChange={handleChange}
           />
         </div>
-          <button type="submit" className="flashy-btn">Submit</button>
+          <button type="submit" className="start">Submit</button>
       </form>
     </div>
     </div>

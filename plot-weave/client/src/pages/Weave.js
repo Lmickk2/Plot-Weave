@@ -52,7 +52,7 @@ const Weave = () => {
 
   return (
     <div>
-      <h2>Weave</h2>
+      {/* <h2>Weave</h2> */}
       <div className="post-form">
       <form
           id="spacing"

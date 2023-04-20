@@ -21,7 +21,7 @@
 }
 
 #logo-large {
-  margin-right: 10rem;
+  transform: translateX(-50%);
 }
 
 a {
@@ -113,6 +113,32 @@ a:hover {
     width: 600px;
 }
 
+.section-3 {
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(6,233,133,1) 75%);
+  height: 100vh;
+}
+
+.trending-profiles {
+  margin: auto;
+  display: flex;
+  margin-top: 3rem;
+  justify-content: space-around;
+}
+
+.trending-prof {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 100%;
+  box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.459);
+}
+
+.profile-prev p {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+
+
 /* CREATE STORY */
 
 .post-form {
@@ -150,7 +176,23 @@ a:hover {
   width: 40%;
   margin-left: 10%;
   margin-top: 10%;
+}
 
+.author-section {
+  display: flex;
+}
+
+.author-section p {
+  font-size: 18px;
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+.author-section img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  box-shadow: -2px 1px 3px rgba(0, 0, 0, 0.336);
 }
 
 .created-by {
@@ -172,7 +214,8 @@ a:hover {
   margin-left: 10%;
   text-align: left;
   width: 40%;
-  background: rgba(7,233,133,255);
+  /* background: rgba(7,233,133,255); */
+  border-left: 1px solid rgba(7,233,133,255);
   height: 100vh;
 }
 
@@ -180,9 +223,19 @@ a:hover {
   background: white !important;
 }
 
+.author-info img {
+  margin-left: 2rem;
+  margin-top: 1rem;
+  display: block;
+  box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.356);
+  height: 6rem;
+  width: 6rem;
+  border-radius: 100%;
+}
+
 .author-info h3 {
   padding-top: 5%;
-  margin-left: 5%;
+  margin-left: 2rem;
 }
 
 .author-info p {
@@ -228,4 +281,66 @@ a:hover {
 .or {
   font-size: 18px;
   padding-top: 10px;
+}
+
+/* POST LIST */
+
+.post-list {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: auto;
+}
+
+.post-info {
+  margin: 1rem;
+  border-radius: 1rem;
+}
+
+.post-list h3 {
+  text-align: left;
+  font-size: 24px;
+  margin-left: 0.5rem;
+}
+
+.post-list p {
+  text-align: left;
+  font-size: 14px;
+  margin-top: 5%;
+  width: 80%;
+  margin-left: 0.5rem;
+}
+
+.author-list {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  color: black !important;
+}
+
+.author-list img {
+  border-radius: 100%;
+  height: 1.5rem;
+  width: 1.5em;
+}
+
+.date {
+  color: green;
+}
+
+/* PROFILE */
+
+.profile-info textarea {
+  margin: auto;
+  display: block;
+}
+
+.profile-info button {
+  margin: auto;
+  display: block;
+}
+
+.profile-info input {
+  display: block;
+  margin: auto;
 }

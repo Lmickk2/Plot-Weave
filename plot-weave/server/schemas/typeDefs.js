@@ -1,11 +1,16 @@
-const { gql } = require("apollo-server-express");
+const {ApolloServer, gql, GraphQLUpload} = require('apollo-server-express');
 
 const typeDefs = gql`
+
+scalar Upload
+
   type User {
     _id: ID
     username: String
     email: String
     password: String
+    profilePicture: Upload
+    bio: String
     posts: [OriginalPost]!
   }
 
@@ -56,7 +61,8 @@ const typeDefs = gql`
     removePost(postId: ID!): OriginalPost
     removeComment(postId: ID!, commentId: ID!): OriginalPost
     addWeave(postText: String!, weaveTitle:String!): Weave
-  }
+    updateUser(profilePicture: Upload, bio: String): User
+  }  
 `;
 
 module.exports = typeDefs;
