@@ -21,7 +21,27 @@
 }
 
 #logo-large {
-  transform: translateX(-50%);
+  transform: translateX(-60%);
+}
+
+.long-btn {
+  background-color: rgba(7,233,133,255);
+  color: white;
+  width: 40%;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  font-size: 18px;
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.473);
+}
+
+.signup-btn {
+  width: 15% !important;
+}
+
+.signup-btn a {
+  width: 15% !important;
+  color: white !important;
 }
 
 a {
@@ -48,6 +68,10 @@ a:hover {
 
 .navbar-toggler-icon {
   color: black !important;
+}
+
+.top {
+  margin-top: 2rem;
 }
 
 /* HOME */
@@ -90,6 +114,10 @@ a:hover {
     font-weight: bold;
     border: none;
     box-shadow: -2px 1px 5px rgba(0, 0, 0, 0.473);
+}
+
+.start a {
+  color: white !important;
 }
 
 .divider {
@@ -249,9 +277,8 @@ a:hover {
   margin: auto;
   margin-top: 5rem;
   height: 30rem;
-  width: 30%;
+  width: 70%;
   border-radius: 1rem;
-  box-shadow: -2px 2px 20px rgba(0, 0, 0, 0.178);
 }
 
 .enter-cred {
@@ -259,12 +286,12 @@ a:hover {
 }
 
 .cred-input {
-  border-radius: 0.5rem;
   padding: 0.5rem;
-  width: 50%;
+  width: 80%;
   height: 3rem;
   border: none;
-  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.411);
+  outline: 0px transparent;
+  border-bottom: 0.5px solid grey;
 }
 
 .log-btns {
@@ -286,10 +313,12 @@ a:hover {
 /* POST LIST */
 
 .post-list {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  justify-items: center;
   width: 80%;
   margin: auto;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 5%;
 }
 
 .post-info {
@@ -329,6 +358,13 @@ a:hover {
 }
 
 /* PROFILE */
+
+.profile-img {
+  width: 8em;
+  height: 8em;
+  border-radius: 100%;
+  margin-top: 4em;
+}
 
 .profile-info textarea {
   margin: auto;

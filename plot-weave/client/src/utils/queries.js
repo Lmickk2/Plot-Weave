@@ -37,6 +37,28 @@ export const QUERY_POSTS = gql`
       postText
       postAuthor
       createdAt
+      user {
+        _id
+        username
+        email
+        profilePicture {
+          data
+        }
+        bio
+      }
+    }
+  }
+`;
+
+
+export const QUERY_USER_POSTS = gql`
+  query getUserPosts($userId: ID!) {
+    posts(postAuthor: $userId) {
+      _id
+      postTitle
+      postText
+      postAuthor
+      createdAt
     }
   }
 `;

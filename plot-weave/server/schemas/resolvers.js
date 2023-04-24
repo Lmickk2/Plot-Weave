@@ -14,7 +14,9 @@ const resolvers = {
     },
     posts: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return OriginalPost.find(params).sort({ createdAt: -1 });
+      return OriginalPost.find(params)
+        .sort({ createdAt: -1 })
+        .populate('user');
     },
     post: async (parent, { postId }) => {
       return OriginalPost.findOne({ _id: postId });
@@ -79,6 +81,25 @@ const resolvers = {
         );
 
         return post;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    addWeave: async (parent, { weaveTitle, postText}, context) => {
+      console.log(postTitle,postText)
+      if (context.user) {
+        const weave = await OriginalPost.create({
+          postTitle,
+          postText,
+          postAuthor: context.user.username,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { weaves: weave._id } }
+        );
+
+        return weave;
       }
       throw new AuthenticationError("You need to be logged in!");
     },

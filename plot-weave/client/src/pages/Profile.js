@@ -97,7 +97,7 @@ const Profile = () => {
         <div className="profile-container">
           {/* <h1>Hello, {user.username}</h1> */}
           <div className="profile-info">
-          <img src={profilePicture} className="profile-img" alt="" />
+          <img src={user.profilePicture} className="profile-img" alt="" />
             <div className="user-details">
               <p className="username">
                 <b>{user.username}</b>

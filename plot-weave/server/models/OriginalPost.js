@@ -16,10 +16,10 @@ const postSchema = new Schema({
     maxlength: 3000,
     trim: true,
   },
-  postAuthor: {
-    type: String,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
     required: true,
-    trim: true,
   },
   createdAt: {
     type: Date,
@@ -50,6 +50,7 @@ const postSchema = new Schema({
     },
   ],
 });
+
 
 const OriginalPost = model('OriginalPost', postSchema);
 
