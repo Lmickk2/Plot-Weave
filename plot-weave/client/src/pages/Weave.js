@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { useLocation } from "react-router-dom";
 import { ADD_WEAVE } from "../utils/mutations";
+import Auth from '../utils/auth';
 
 const Weave = () => {
   const { search } = useLocation();
@@ -17,7 +18,7 @@ const Weave = () => {
     }
   }, [sentenceText]);
 
-  const [weaveTitle, setWeaveTitle] = useState("");
+  const [postTitle, setpostTitle] = useState("");
 
   const [addWeave, { error }] = useMutation(ADD_WEAVE);
 
@@ -27,11 +28,12 @@ const Weave = () => {
     try {
       const { data } = await addWeave({
         variables: {
-          weaveTitle,
+          postTitle,
           postText,
+          weaveAuthor: Auth.getProfile().data.username,
         },
       });
-      setWeaveTitle("");
+      setpostTitle("");
       setPostText("");
     } catch (err) {
       console.error(err);
@@ -45,14 +47,13 @@ const Weave = () => {
       setPostText(value);
     }
 
-    if (name === "weaveTitle" && value.length <= 80) {
-      setWeaveTitle(value);
+    if (name === "postTitle" && value.length <= 80) {
+      setpostTitle(value);
     }
   };
 
   return (
     <div>
-      {/* <h2>Weave</h2> */}
       <div className="post-form">
       <form
           id="spacing"
@@ -60,12 +61,12 @@ const Weave = () => {
             onSubmit={handleFormSubmit}
           >
       <div className="post-title">
-          <label htmlFor="weaveTitle"></label>
+          <label htmlFor="postTitle"></label>
           <input
             type="text"
             placeholder="Title"
-            name="weaveTitle"
-            value={weaveTitle}
+            name="postTitle"
+            value={postTitle}
             className="title-input"
             onChange={handleChange}
           />

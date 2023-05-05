@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
+const fs = require('fs');
 
 const postSchema = new Schema({
   postTitle: {
@@ -16,10 +17,10 @@ const postSchema = new Schema({
     maxlength: 3000,
     trim: true,
   },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
+  postAuthor: {
+    type: String,
     required: true,
+    trim: true,
   },
   createdAt: {
     type: Date,
@@ -29,7 +30,6 @@ const postSchema = new Schema({
       return date.toLocaleString('en-US', { month: 'long', day: 'numeric' });
     }
   },
-  
   comments: [
     {
       commentText: {
@@ -50,6 +50,7 @@ const postSchema = new Schema({
     },
   ],
 });
+
 
 
 const OriginalPost = model('OriginalPost', postSchema);

@@ -3,7 +3,7 @@ const dateFormat = require('../utils/dateFormat');
 
 
 const weaveSchema = new Schema({
-  weaveTitle: {
+  postTitle: {
     type: String,
     required: 'You need to leave a title!',
     minlength: 1,

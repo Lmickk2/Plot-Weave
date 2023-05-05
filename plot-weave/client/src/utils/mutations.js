@@ -53,11 +53,12 @@ export const ADD_POST = gql`
   }
 `;
 
+
 export const ADD_WEAVE = gql`
-  mutation addWeave($postText: String!, $weaveTitle: String!) {
-    addWeave(postText: $postText, weaveTitle: $weaveTitle) {
+  mutation addWeave($postText: String!, $postTitle: String!) {
+    addWeave(postText: $postText, postTitle: $postTitle) {
       _id
-      weaveTitle
+      postTitle
       postText
       weaveAuthor
       createdAt

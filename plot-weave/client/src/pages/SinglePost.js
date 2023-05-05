@@ -13,24 +13,25 @@ const SinglePost = () => {
   });
 
   const post = data?.post || {};
+  
+
+  const [hoveredSentence, setHoveredSentence] = useState(null);
+  const [clickedSentence, setClickedSentence] = useState(null);
 
   const weaveSentence = (sentenceIndex, sentenceText) => {
     const sentences = post.postText.split(". ");
-    const url = sentences
-      .slice(0, sentenceIndex + 1)
-      .join(". ")
+    const previousSentences = sentences.slice(0, sentenceIndex + 1);
+    const url = previousSentences.join(". ")
       .replace(/\s+/g, "-")
       .toLowerCase();
     return {
       href: `/weave/${postId}/${url}?sentenceIndex=${sentenceIndex}&sentenceText=${sentenceText}`,
       "data-text": sentenceText.trim() + ".",
-      onClick: () => setClickedSentence(sentenceIndex, sentenceText)
+      onClick: () => setClickedSentence(sentenceIndex)
     };
   };
   
-
-  const [hoveredSentence, setHoveredSentence] = useState(null);
-  const [clickedSentence, setClickedSentence] = useState(null);
+  
 
   if (loading) {
     return (
@@ -110,8 +111,6 @@ const SinglePost = () => {
       </div>
       <img src={profilepic}/>
       <h3>{post.postAuthor}</h3>
-      <p>Writing student from UM. 20 years old</p>
-      {/* <p>View more from {post.postAuthor}</p> */}
     </div>
     </div>
   );

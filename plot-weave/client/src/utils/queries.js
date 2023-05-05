@@ -37,15 +37,6 @@ export const QUERY_POSTS = gql`
       postText
       postAuthor
       createdAt
-      user {
-        _id
-        username
-        email
-        profilePicture {
-          data
-        }
-        bio
-      }
     }
   }
 `;
@@ -67,7 +58,7 @@ export const QUERY_WEAVES = gql`
   query getWeaves {
     weaves {
       _id
-      weaveTitle
+      postTitle
       postText
       weaveAuthor
       createdAt
@@ -93,6 +84,7 @@ export const QUERY_SINGLE_POST = gql`
   }
 `;
 
+
 export const QUERY_ME = gql`
   query me {
     me {
@@ -103,6 +95,7 @@ export const QUERY_ME = gql`
       profilePicture
       posts {
         _id
+        postTitle
         postText
         postAuthor
         createdAt

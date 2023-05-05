@@ -3,6 +3,14 @@ require("dotenv").config();
 const { AuthenticationError } = require("apollo-server-express");
 const { User, OriginalPost, Weave } = require("../models");
 const { signToken } = require("../utils/auth");
+const AWS = require('aws-sdk');
+
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
+
+const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
 const resolvers = {
   Query: {
@@ -14,9 +22,7 @@ const resolvers = {
     },
     posts: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return OriginalPost.find(params)
-        .sort({ createdAt: -1 })
-        .populate('user');
+      return OriginalPost.find(params).sort({ createdAt: -1 });
     },
     post: async (parent, { postId }) => {
       return OriginalPost.findOne({ _id: postId });
@@ -84,14 +90,13 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-
-    addWeave: async (parent, { weaveTitle, postText}, context) => {
+    addWeave: async (parent, { postTitle, postText}, context) => {
       console.log(postTitle,postText)
       if (context.user) {
-        const weave = await OriginalPost.create({
+        const weave = await Weave.create({
           postTitle,
           postText,
-          postAuthor: context.user.username,
+          weaveAuthor: context.user.username,
         });
 
         await User.findOneAndUpdate(

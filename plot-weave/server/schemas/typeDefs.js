@@ -21,6 +21,7 @@ scalar Upload
     postAuthor: String
     createdAt: String
     comments: [Comment]!
+    user: [User]!
   }
 
   type Comment {
@@ -46,7 +47,7 @@ scalar Upload
   }
   type Weave {
     _id: ID
-    weaveTitle:String
+    postTitle:String
     postText: String
     weaveAuthor: String
     createdAt: String
@@ -60,7 +61,7 @@ scalar Upload
     addComment(postId: ID!, commentText: String!): OriginalPost
     removePost(postId: ID!): OriginalPost
     removeComment(postId: ID!, commentId: ID!): OriginalPost
-    addWeave(postText: String!, weaveTitle:String!): Weave
+    addWeave(postText: String!, postTitle:String!): Weave
     updateUser(profilePicture: Upload, bio: String): User
   }  
 `;

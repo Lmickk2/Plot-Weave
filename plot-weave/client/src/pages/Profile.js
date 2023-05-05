@@ -3,6 +3,15 @@ import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { Helmet } from "react-helmet";
 import { useMutation } from "@apollo/client";
+import { Link } from "react-router-dom";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInstagram,
+  faFacebook,
+  faTwitter,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import { UPDATE_USER } from "../utils/mutations";
@@ -29,7 +38,7 @@ const Profile = () => {
     if (loading) {
       return;
     }
-    
+
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
       return <Navigate to="/me" />;
     }
@@ -53,6 +62,8 @@ const Profile = () => {
 
   const toggleEditProfile = () => {
     setShowEditProfile(!showEditProfile);
+    const modal = document.querySelector(".modal");
+    modal.classList.toggle("show");
   };
 
   const handleBioChange = (event) => {
@@ -63,7 +74,7 @@ const Profile = () => {
     const file = event.target.files[0];
     setProfilePicture(URL.createObjectURL(file));
   };
-  
+
   const handleProfileUpdate = async (event) => {
     event.preventDefault();
 
@@ -75,6 +86,12 @@ const Profile = () => {
       setBio(data.updateUser.bio);
       setProfilePicture(null);
       setShowEditProfile(false);
+
+
+      const profile = Auth.getProfile();
+      profile.data.bio = data.updateUser.bio;
+      profile.data.profilePicture = data.updateUser.profilePicture;
+      Auth.setProfile(profile);
     } catch (e) {
       console.error(e);
     }
@@ -89,7 +106,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="appear">
+    <div className="prof-page appear">
       <Helmet>
         <title>Plot Weave | Profile</title>
       </Helmet>
@@ -97,51 +114,89 @@ const Profile = () => {
         <div className="profile-container">
           {/* <h1>Hello, {user.username}</h1> */}
           <div className="profile-info">
-          <img src={user.profilePicture} className="profile-img" alt="" />
-            <div className="user-details">
-              <p className="username">
-                <b>{user.username}</b>
-              </p>
-              <p>{user.bio}</p>
-              <div className="edit-profile">
-                <span className="pencil-icon" onClick={() => setShowEditProfile(!showEditProfile)}>
-                  &#9998;
-                </span>
-                {showEditProfile && (
-                  <form onSubmit={handleProfileUpdate}>
-                    <textarea
-                      placeholder="Tell us about yourself"
-                      value={bio}
-                      onChange={handleBioChange}
-                    />
-                    <input
-                      type="file"
-                      accept=".jpg,.jpeg,.png"
-                      onChange={handleProfilePictureChange}
-                    />
-                    <button type="submit">Update Profile</button>
-                  </form>
-                )}
+            <div className="prof-head">
+              <img src={user.profilePicture} className="profile-img" alt="" />
+              <div className="user-details">
+                <p className="username">
+                  <b>{user.username}</b>
+                </p>
+                <p>{user.bio}</p>
+                <div className="edit-profile">
+                  <span
+                    className="pencil-icon"
+                    onClick={() => setShowEditProfile(!showEditProfile)}
+                  >
+                    &#9998; Edit Profile
+                  </span>
+                  {showEditProfile && (
+                    <div className="modal">
+                      <form onSubmit={handleProfileUpdate}>
+                        <button className="exit" onClick={toggleEditProfile}>
+                          Exit
+                        </button>
+                        <textarea
+                          placeholder="Tell us about yourself"
+                          value={bio}
+                          onChange={handleBioChange}
+                        />
+                        <input
+                          type="file"
+                          accept=".jpg,.jpeg,.png"
+                          onChange={handleProfilePictureChange}
+                        />
+                        <button type="submit">Update Profile</button>
+                      </form>
+                      <button
+                        className="close-modal"
+                        onClick={toggleEditProfile}
+                      >
+                        &times;
+                      </button>
+                    </div>
+                  )}
+
+                  <div class="social-media">
+                    <a href="https://www.facebook.com/">
+                      <FontAwesomeIcon icon={faFacebook} id="fb" />
+                    </a>
+                    <a href="https://www.instagram.com/">
+                      <FontAwesomeIcon icon={faInstagram} id="ig" />
+                    </a>
+                    <a href="https://twitter.com/?lang=en">
+                      <FontAwesomeIcon icon={faTwitter} id="tw" />
+                    </a>
+                    <a href="https://www.youtube.com/">
+                      <FontAwesomeIcon icon={faYoutube} id="yt" />
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div className="user-answers">
-                <h3>Recently Asked Questions</h3>
-                <hr />
-              </div>
-              <button className="toggle-thoughts" onClick={toggleThoughts}>
-                {showThoughts ? (
-                  <span>Collapse &#8613;</span>
-                ) : (
-                  <span>Expand &#8615;</span>
-                )}
-              </button>
-              <div className="recently-answered"></div>
             </div>
+            <div className="user-activity">
+              <h3>{user.username}'s Posts</h3>
+              <hr />
+              <div className="user-posts">
+                {user.posts.map((post) => (
+                  <div key={post._id} className="post">
+                    <h4>
+                      <Link to={`/post/${post._id}`}>{post.postTitle}</Link> <span className="post-date">{new Date(post.createdAt).toLocaleDateString()}</span>
+                    </h4>
+                    <p>
+                    {post.postText.slice(0, 150) + '...'}
+                    </p>
+                    {/* <p className="post-date">
+                      Posted on: {new Date(post.createdAt).toLocaleDateString()}
+                    </p> */}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="recently-answered"></div>
           </div>
         </div>
       </div>
     </div>
   );
-  
 };
 
 export default Profile;

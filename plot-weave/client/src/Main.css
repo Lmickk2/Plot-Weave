@@ -2,6 +2,14 @@
 
 @import "~bootstrap/dist/css/bootstrap.css";
 
+.fa, .far, .fas {
+  font-family: "Font Awesome 5 Brands";
+}
+
+.fab {
+  font-family: "Font Awesome 5 Brands" !important;
+}
+
 .navbar {
   background-color: rgba(7,233,133,255) !important;
   height: 70px;
@@ -21,7 +29,7 @@
 }
 
 #logo-large {
-  transform: translateX(-60%);
+  transform: translateX(-50%);
 }
 
 .long-btn {
@@ -56,6 +64,7 @@ a:hover {
 
 #logo-small {
   max-width: 50px;
+  margin-left: 0.3em;
 }
 
 #logo-large {
@@ -75,6 +84,41 @@ a:hover {
 }
 
 /* HOME */
+
+@media screen and (max-width:768px) {
+  .hero {
+    padding-top: 40% !important;
+    display: inherit !important;
+  }
+  .intro {
+    margin: auto !important;
+    width: 90% !important;
+  }
+  .intro h1 {
+    font-size: 42px !important;
+  }
+  .weave {
+    display: none !important;
+  }
+  .section-2 {
+    padding-bottom: 5em;
+    margin: auto !important;
+  }
+  .section-2 h1 {
+    text-align: center !important;
+    margin: inherit !important;
+    padding-bottom: 0.2em;
+    border-bottom: 0.5px solid grey;
+  }
+  .post-list {
+    margin-top: inherit !important;
+  }
+  .trending-prof {
+    width: 4rem !important;
+    height: 4rem !important;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.459) !important;
+  }
+}
 
 .hero {
     padding-top: 15%;
@@ -312,12 +356,25 @@ a:hover {
 
 /* POST LIST */
 
+@media screen and (max-width: 768px) {
+  .post-list {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    justify-items: inherit !important;
+  }
+  .post-list h3 {
+    font-size: 18px !important;
+  }
+}
+
+
 .post-list {
-  display: grid;
-  justify-items: center;
-  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
   margin: auto;
-  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  align-items: center;
   margin-top: 5%;
 }
 
@@ -340,6 +397,7 @@ a:hover {
   margin-left: 0.5rem;
 }
 
+
 .author-list {
   display: flex;
   justify-content: center;
@@ -359,11 +417,149 @@ a:hover {
 
 /* PROFILE */
 
+@media screen and (max-width:768px) {
+  .profile-info {
+    display: block !important;
+  }
+  .prof-head {
+    width: 90% !important;
+    margin: auto !important;
+    margin-top: 2em !important;
+  }
+  .user-activity {
+    width: 80% !important;
+    margin: auto !important;
+    margin-top: 2em !important;
+  }
+}
+
+.modal {
+  display: none;
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal .exit {
+  margin-left: 0em;
+  margin-bottom: 1em;
+  background: transparent;
+  border: none;
+  color: grey;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal form {
+  background: rgb(81, 243, 173);
+  margin: 15% auto;
+  padding: 40px;
+  width: 80%;
+  max-width: 40em;
+  border-radius: 2em;
+  position: relative;
+  box-shadow: -2px 3px 5px rgba(0, 0, 0, 0.342);
+}
+
+.modal textarea {
+  width: 100%;
+  height: 6em;
+  margin-bottom: 0.2em;
+}
+
+.modal input[type="file"] {
+  margin-bottom: 0.2em;
+  margin: inherit;
+}
+
+.modal button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal .close-modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 28px;
+  font-weight: bold;
+  color: #aaa;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+
+.prof-head {
+    background-size: cover;
+    background-color: #f5f5f5;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.185);
+    width: 70%;
+    margin-left: 2em; 
+    margin-top: 4em;
+    height: 65vh;
+    border-radius: 2em;
+}
+
 .profile-img {
-  width: 8em;
-  height: 8em;
+  width: 10em;
+  height: 10em;
   border-radius: 100%;
   margin-top: 4em;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.233);
+}
+
+.username {
+  padding-top: 0.5em;
+}
+
+.social-media {
+  padding-top: 0.6em;
+}
+
+.social-media > a {
+  margin: 0.5em;
+  font-size: 22px;
+}
+
+#yt {
+  color: red;
+}
+
+#tw, #fb {
+  color: rgb(34, 99, 238);
+}
+
+#ig {
+  color: rgb(163, 110, 11);
+}
+
+.profile-info {
+  display: flex;
+  justify-content: center;
+}
+
+.post-date {
+  color: #4caf50;
+  font-size: 14px;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile-info textarea {
@@ -379,4 +575,26 @@ a:hover {
 .profile-info input {
   display: block;
   margin: auto;
+}
+
+.user-activity {
+  text-align: left;
+  width: 30%;
+  margin-left: 7em;
+  margin-top: 4em;
+}
+
+.user-posts {
+  justify-content: space-evenly;
+}
+
+.user-posts p {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.toggler {
+  border: none;
+  box-shadow: inset 0px 2px 2px grey;
+  padding: 0.3em 1em;
+  background-color: #74ee78;
 }

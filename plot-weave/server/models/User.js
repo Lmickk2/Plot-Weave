@@ -34,7 +34,7 @@ const userSchema = new Schema({
     },
     contentType: {
       type: String,
-      default: 'image/png',
+      default: './client/src/images/beta.png',
     },
   },
   bio: {

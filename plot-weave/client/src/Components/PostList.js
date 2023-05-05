@@ -8,7 +8,7 @@ const PostList = ({
   showUsername,
 }) => {  
   const { loading, data } = useQuery(QUERY_POSTS);
-
+  console.log(data)
   return (
     <div>
       {loading ? (
@@ -20,8 +20,8 @@ const PostList = ({
               <div key={post._id}>
                 <div className="post-info">
                   <div className="author-list">
-                    <img src={post.user.profilePicture.data}/>
-                    <p>{post.user.username}</p>
+                    <p>{post.postAuthor}</p>
+                    <img src={post.postAuthor.profilePicture} />
                   </div>
                   <h3><Link to={`/post/${post._id}`}>{post.postTitle}</Link></h3>
                   <p className="date">{post.createdAt}</p>
@@ -32,14 +32,7 @@ const PostList = ({
         </div>
       )}
     </div>
-  );
-  
-  
-  
-  
-  
-  
-  
+  );  
 };
 
 export default PostList;

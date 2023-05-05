@@ -3,8 +3,7 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Route,
-  Routes,
-  Navigate
+  Routes
 } from "react-router-dom";
 import {
   ApolloClient,
