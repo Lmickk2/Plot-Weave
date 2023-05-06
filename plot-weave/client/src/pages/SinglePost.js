@@ -18,19 +18,29 @@ const SinglePost = () => {
   const [hoveredSentence, setHoveredSentence] = useState(null);
   const [clickedSentence, setClickedSentence] = useState(null);
 
-  const weaveSentence = (sentenceIndex, sentenceText) => {
-    const sentences = post.postText.split(". ");
-    const previousSentences = sentences.slice(0, sentenceIndex + 1);
-    const url = previousSentences.join(". ")
-      .replace(/\s+/g, "-")
-      .toLowerCase();
-    return {
-      href: `/weave/${postId}/${url}?sentenceIndex=${sentenceIndex}&sentenceText=${sentenceText}`,
-      "data-text": sentenceText.trim() + ".",
-      onClick: () => setClickedSentence(sentenceIndex)
-    };
+  const generateURL = (sentences, selectedIndex) => {
+    const precedingSentences = sentences.slice(0, selectedIndex + 1);
+    const postText = precedingSentences.join('.').toLowerCase().replace(/\s+/g, '-');
+    const selectedSentence = encodeURIComponent(precedingSentences[selectedIndex]);
+    const sentenceIndex = encodeURIComponent(selectedIndex);
+    return `/weave?postText=${postText}&selectedSentence=${selectedSentence}&sentenceIndex=${sentenceIndex}`;
+    
   };
   
+
+  const weaveSentence = (sentenceIndex, sentenceText) => {
+    const sentences = post.postText.split(". ");
+    const url = generateURL(sentences, sentenceIndex);
+    return {
+      href: url,
+      "data-text": sentenceText.trim() + ".",
+      onClick: (event) => {
+        event.preventDefault();
+        setClickedSentence(sentenceIndex);
+        window.location.href = url;
+      }
+    };
+  };
   
 
   if (loading) {
@@ -48,14 +58,20 @@ const SinglePost = () => {
     setHoveredSentence(null);
   }
 
+  console.log(sentences)
+
   const sentencesWithActions = sentences.map((sentence, index) => {
     return {
       text: sentence.trim() + ".",
       actions: weaveSentence(index, sentence),
-      onClick: () => sentenceClicked(index)
+      onClick: () => {
+        setClickedSentence(index);
+        const url = generateURL(sentences, index);
+        window.location.href = url;
+      }
     }
   });
-
+  
   const clickedSentences = sentencesWithActions.slice(0, clickedSentence + 1);
 
   return (
@@ -91,7 +107,7 @@ const SinglePost = () => {
                   style={{
                     position: "absolute",
                     top: "50%",
-                    right: 0,
+                    left: "0",
                     transform: "translateY(-50%)",
                     backgroundColor: "#fff",
                     padding: "0.25rem",

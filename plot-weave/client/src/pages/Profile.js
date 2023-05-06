@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import { Helmet } from "react-helmet";
 import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
+import betaTester from "../images/beta.png"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -56,15 +57,14 @@ const Profile = () => {
     }
   }, [loading, user, data, userParam]);
 
-  const toggleThoughts = () => {
-    setShowThoughts(!showThoughts);
-  };
-
   const toggleEditProfile = () => {
-    setShowEditProfile(!showEditProfile);
-    const modal = document.querySelector(".modal");
-    modal.classList.toggle("show");
+    if (user.username === Auth.getProfile().data.username) {
+      setShowEditProfile(!showEditProfile);
+      const modal = document.querySelector(".modal");
+      modal.classList.toggle("show");
+    }
   };
+  
 
   const handleBioChange = (event) => {
     setBio(event.target.value);
@@ -96,6 +96,16 @@ const Profile = () => {
       console.error(e);
     }
   };
+  const [showAllPosts, setShowAllPosts] = useState(false);
+  const displayedPosts = showAllPosts ? user?.posts : user?.posts?.slice(0, 3);
+
+  const handleViewMore = () => {
+    setShowAllPosts(true);
+  };
+
+  const handleViewLess = () => {
+    setShowAllPosts(false);
+  };
 
   if (loading) {
     return (
@@ -112,13 +122,12 @@ const Profile = () => {
       </Helmet>
       <div>
         <div className="profile-container">
-          {/* <h1>Hello, {user.username}</h1> */}
           <div className="profile-info">
             <div className="prof-head">
-              <img src={user.profilePicture} className="profile-img" alt="" />
+              <img src={betaTester} className="profile-img" alt="" />
               <div className="user-details">
                 <p className="username">
-                  <b>{user.username}</b>
+                  <b>{userParam ? `${user.username}` : `${user.username}`}</b>
                 </p>
                 <p>{user.bio}</p>
                 <div className="edit-profile">
@@ -172,25 +181,29 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-            <div className="user-activity">
-              <h3>{user.username}'s Posts</h3>
-              <hr />
-              <div className="user-posts">
-                {user.posts.map((post) => (
-                  <div key={post._id} className="post">
-                    <h4>
-                      <Link to={`/post/${post._id}`}>{post.postTitle}</Link> <span className="post-date">{new Date(post.createdAt).toLocaleDateString()}</span>
-                    </h4>
-                    <p>
-                    {post.postText.slice(0, 150) + '...'}
-                    </p>
-                    {/* <p className="post-date">
-                      Posted on: {new Date(post.createdAt).toLocaleDateString()}
-                    </p> */}
-                  </div>
-                ))}
-              </div>
-            </div>
+         <div className="user-activity">
+      <h3>{user?.username}'s Posts</h3>
+      <hr />
+      <div className="user-posts">
+        {displayedPosts?.map((post) => (
+          <div key={post._id} className="post">
+            <h4>
+              <Link to={`/post/${post._id}`}>{post.postTitle}</Link>{" "}
+              <span className="post-date">
+                {new Date(post.createdAt).toLocaleDateString()}
+              </span>
+            </h4>
+            <p>{post.postText.slice(0, 150) + "..."}</p>
+          </div>
+        ))}
+        {!showAllPosts && displayedPosts?.length < (user?.posts?.length || 0) && (
+          <button onClick={handleViewMore} className="show-view">View More</button>
+        )}
+        {showAllPosts && (
+          <button onClick={handleViewLess} className="show-view">View Less</button>
+        )}
+      </div>
+    </div>
             <div className="recently-answered"></div>
           </div>
         </div>

@@ -214,12 +214,15 @@ a:hover {
 /* CREATE STORY */
 
 .post-form {
+  margin: auto;
   margin-top: 5%;
 }
 
-
 .title-input {
+  margin: auto;
+  color: black;
   font-family: 'Times New Roman', Times, serif;
+  box-shadow: inherit;
   border: none;
   width: 70%;
   font-size: 42px;
@@ -229,15 +232,118 @@ a:hover {
 }
 
 .post-input {
+  margin: auto;
   margin-top: 2rem;
+  color: black;
   font-family: 'Times New Roman', Times, serif;
+  box-shadow: inherit;
   width: 70%;
   outline: 0px transparent;
   border: 0.1rem solid #00000036;
   height: 20rem;
 }
 
+  .weaveBtn {
+    padding: 0.7em 0.9em;
+    margin: auto;
+    margin-top: 2em;
+    border: 3px dashed #4caf50;
+    border-radius: 1.5em;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 1s;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    color: black;
+    box-shadow: -3px 4px 5px rgba(0, 0, 0, 0.288);
+  }
+  
+  .weaveBtn::before {
+    content: "";
+    background-color: #4caf50;
+    height: 100%;
+    width: 0;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    z-index: -1;
+    transition: width 0.6s ease-in;
+    transition-delay: 0.5s;
+  }
+  
+  .weaveBtn::after {
+    transition: none;
+  }
+  
+  .weaveBtn:hover::before {
+    width: 200%;
+    left: 0;
+  }
+  
+  .weaveBtn:hover {
+    animation: fill-border 1s ease-in-out forwards;
+    color: #fff;
+    border: 3px dashed #4caf50;
+    transition: border 1s ease-in-out;
+    transition: color 1s ease-in-out;
+  }
+  
+  @keyframes fill-border {
+    0% {
+      border-top: 3px solid #4caf50;
+    }
+  
+    25% {
+      border-right: 3px solid #4caf50;
+    }
+  
+    50% {
+      border-bottom: 3px solid #4caf50;
+    }
+  
+    75% {
+      border-left: 3px solid #4caf50;
+    }
+  
+    100% {
+      border-top: 3px solid #4caf50;
+      border-right: 3px solid #4caf50;
+      border-bottom: 3px solid #4caf50;
+      border-left: 3px solid #4caf50;
+    }
+  }
+
 /* SINGLE POST */
+
+@media screen and (max-width:768px) {
+  .post-section {
+    display: inherit !important;
+  }
+  .single-post {
+    width: 90% !important;
+    margin: auto !important;
+    margin-top: 3em !important;
+  }
+  .author-info {
+    width: 90% !important;
+    margin: auto !important;
+    margin-top: 3em !important;
+    text-align: center !important;
+  }
+  .author-info h3 {
+    margin: auto !important;
+  }
+  .author-info img {
+    margin: auto !important;
+    display: block;
+    margin-top: 1rem !important;
+    box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.356);
+    height: 5rem !important;
+    width: 5rem !important;
+    border-radius: 100%;
+  }
+}
 
 .post-section {
   display: flex;
@@ -283,6 +389,7 @@ a:hover {
 }
 
 .author-info {
+  background-color: rgb(248, 248, 248);
   margin-left: 10%;
   text-align: left;
   width: 40%;
@@ -431,6 +538,13 @@ a:hover {
     margin: auto !important;
     margin-top: 2em !important;
   }
+}
+
+.show-view {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid;
+  color: black;
 }
 
 .modal {

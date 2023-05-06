@@ -7,18 +7,27 @@ import Auth from '../utils/auth';
 const Weave = () => {
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);
-  const sentenceIndex = queryParams.get("sentenceIndex");
-  const sentenceText = queryParams.get("sentenceText");
+  const location = useLocation();
+  const postTextFromURL = new URLSearchParams(location.search).get('postText');
+  const selectedSentence = new URLSearchParams(location.search).get('selectedSentence');
+  const sentenceIndex = new URLSearchParams(location.search).get('sentenceIndex');
 
   const [postText, setPostText] = useState("");
 
   useEffect(() => {
-    if (sentenceText) {
-      setPostText(sentenceText);
+    if (postTextFromURL) {
+      setPostText(postTextFromURL);
     }
-  }, [sentenceText]);
+  }, [postTextFromURL]);
 
-  const [postTitle, setpostTitle] = useState("");
+  useEffect(() => {
+    if (postText) {
+      setPostText(postText.replace(/-/g, ' '));
+    }
+  }, [postText]);
+  
+
+  const [postTitle, setPostTitle] = useState("");
 
   const [addWeave, { error }] = useMutation(ADD_WEAVE);
 
@@ -33,7 +42,7 @@ const Weave = () => {
           weaveAuthor: Auth.getProfile().data.username,
         },
       });
-      setpostTitle("");
+      setPostTitle("");
       setPostText("");
     } catch (err) {
       console.error(err);
@@ -48,44 +57,43 @@ const Weave = () => {
     }
 
     if (name === "postTitle" && value.length <= 80) {
-      setpostTitle(value);
+      setPostTitle(value);
     }
   };
 
   return (
     <div>
       <div className="post-form">
-      <form
+        <form
           id="spacing"
-            className="flex-row justify-center justify-space-between-md align-center"
-            onSubmit={handleFormSubmit}
-          >
-      <div className="post-title">
-          <label htmlFor="postTitle"></label>
-          <input
-            type="text"
-            placeholder="Title"
-            name="postTitle"
-            value={postTitle}
-            className="title-input"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="question-post">
-          <label htmlFor="postText"></label>
-          <textarea
-            name="postText"
-            value={postText}
-            className="post-input"
-
-            style={{ lineHeight: '1.5', resize: 'vertical' }}
-            onChange={handleChange}
-          />
-        </div>
-        <button className="start" type="submit">
-                Create Post !
-              </button>
-      </form>
+          className="flex-row justify-center justify-space-between-md align-center"
+          onSubmit={handleFormSubmit}
+        >
+          <div className="post-title">
+            <label htmlFor="postTitle"></label>
+            <input
+              type="text"
+              placeholder="Title"
+              name="postTitle"
+              value={postTitle}
+              className="title-input"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="question-post">
+            <label htmlFor="postText"></label>
+            <textarea
+              name="postText"
+              value={postText}
+              className="post-input"
+              style={{ lineHeight: '1.5', resize: 'vertical' }}
+              onChange={handleChange}
+            />
+          </div>
+          <button className="weaveBtn" type="submit">
+            Create Post !
+          </button>
+        </form>
       </div>
     </div>
   );

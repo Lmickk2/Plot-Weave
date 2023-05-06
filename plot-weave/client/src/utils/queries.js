@@ -6,10 +6,6 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      profilePicture {
-        data
-      }
-      bio
       posts {
         _id
         postText

@@ -12,8 +12,8 @@ import { Helmet } from "react-helmet";
 const CreateStory = () => {
   const [postText, setPostText] = useState('');
   const [postTitle, setPostTitle] = useState('');
-
   const [characterCount, setCharacterCount] = useState(0);
+  const [isPublished, setIsPublished] = useState(false);
 
   const [addPost, { error }] = useMutation(ADD_POST, {
     update(cache, { data: { addPost } }) {
@@ -28,7 +28,7 @@ const CreateStory = () => {
         console.error(e);
       }
 
-
+      setIsPublished(true);
     },
   });
 
@@ -52,15 +52,13 @@ const CreateStory = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-  console.log(name,value)
+
     if (name === 'postText' && value.length <= 3000) {
       setPostText(value);
       setCharacterCount(value.length);
     } 
     if (name === 'postTitle' && value.length <= 80) {
-      console.log(postTitle)
       setPostTitle(value);
-      console.log(postTitle)
     }
   };
   
@@ -73,53 +71,58 @@ const CreateStory = () => {
 
       {Auth.loggedIn() ? (
         <>
-        <div className="post-form">
-          <form
-          id="spacing"
-            className="flex-row justify-center justify-space-between-md align-center"
-            onSubmit={handleFormSubmit}
-          >
-            <div className="post-title">
-              <textarea
-                name="postTitle"
-                placeholder="Title"
-                value={postTitle}
-                className="title-input"
-                onChange={handleChange}
-              ></textarea>
-            </div>
-            <div className="question-post">
-              <textarea
-                name="postText"
-                placeholder="Start Writing!"
-                value={postText}
-                className="post-input"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></textarea>
-            </div>
-            <p
-            className={`type-white ${
-              characterCount === 3000 || error ? 'text-danger' : ''
-            }`}
-          >
-            Character Count: {characterCount}/3000
-          </p>
-
-          
-              <button className="start" type="submit">
-                Create Post !
-              </button>
+          {!isPublished ? ( // Conditionally render based on the state variable
+            <div className="post-form">
+              <form
+                id="spacing"
+                className="flex-row justify-center justify-space-between-md align-center"
+                onSubmit={handleFormSubmit}
+              >
+                <div className="post-title">
+                  <textarea
+                    name="postTitle"
+                    placeholder="Title"
+                    value={postTitle}
+                    className="title-input"
+                    onChange={handleChange}
+                  ></textarea>
+                </div>
         
-            {error && (
-              <div className="col-12 my-3 bg-danger text-white p-3">
+                <div className="question-post">
+                  <textarea
+                    name="postText"
+                    placeholder="Start Writing!"
+                    value={postText}
+                    className="post-input"
+                    style={{ lineHeight: '1.5', resize: 'vertical' }}
+                    onChange={handleChange}
+                  ></textarea>
+                </div>
+                <p
+                  className={`type-white ${
+                    characterCount === 3000 || error ? 'text-danger' : ''
+                  }`}
+                >
+                  Character Count: {characterCount}/3000
+                </p>
+
+                <button className="weaveBtn" type="submit">
+                  Create Post !
+                </button>
+
+                {error && (
+                  <div className="col-12 my-3 bg-danger text-white p-3">
                 {error.message}
               </div>
             )}
           </form>
           </div>
+          ): (
+            <h2>
+              Story Published!
+            </h2>
+          )}
         </>
-        
       ) : (
    <NotAuthorized/>
       )}
