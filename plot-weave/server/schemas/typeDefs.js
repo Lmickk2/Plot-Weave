@@ -12,6 +12,8 @@ scalar Upload
     profilePicture: Upload
     bio: String
     posts: [OriginalPost]!
+    followers: [User!]
+    following: [User!]
   }
 
   type OriginalPost {
@@ -22,7 +24,9 @@ scalar Upload
     createdAt: String
     comments: [Comment]!
     user: [User]!
+    likes: Int!
   }
+  
 
   type Comment {
     _id: ID
@@ -52,6 +56,7 @@ scalar Upload
     weaveAuthor: String
     createdAt: String
     comments: [Comment]!
+    likes: [User!]!
   }
 
   type Mutation {
@@ -63,6 +68,10 @@ scalar Upload
     removeComment(postId: ID!, commentId: ID!): OriginalPost
     addWeave(postText: String!, postTitle:String!): Weave
     updateUser(profilePicture: Upload, bio: String): User
+    followUser(followeeId: ID!): User!
+    unfollowUser(followeeId: ID!): User!
+    likePost(postId: ID!): OriginalPost!
+    unlikePost(postId: ID!): OriginalPost!
   }  
 `;
 

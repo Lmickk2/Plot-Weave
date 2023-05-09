@@ -42,7 +42,7 @@ const Login = (props) => {
   };
 
   return (
-    <div className="two-section">
+    <div className="cool-bg">
       <Helmet>
         <title>Plot Weave | Login</title>
       </Helmet>

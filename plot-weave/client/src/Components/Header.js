@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import logoLarge from "../images/logo-large.png"
 import logoSmall from "../images/logo-small.png"
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Header() {
   const [collapsed, setCollapsed] = useState(true);
@@ -29,10 +31,11 @@ function Header() {
       aria-expanded={!collapsed}
       aria-label="Toggle navigation"
     >
-        <span className="navbar-toggler-icon"></span>
+        <FontAwesomeIcon icon={faBars} className="navbar-toggler-icon" style={{color: "#000000",}} />
       </button>
       <div className={`navbar-collapse ${collapsed ? 'collapse' : ''}`} id="navbarNav">
         <ul className="navbar-nav">
+        <Link to="/"><img src={logoLarge} id="logo-large" className="navbar-brand d-none d-lg-block"></img></Link>
           <li className="nav-item">
             <Link to="/about" className="nav-link active" onClick={toggleNavbar}>
               About
@@ -49,17 +52,16 @@ function Header() {
             </Link>
           </li>
         </ul>
-        <Link to="/"><img src={logoLarge} id="logo-large" className="navbar-brand d-none d-lg-block"></img></Link>
 
         {Auth.loggedIn() ? (
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link to="/me" className="nav-link active" onClick={toggleNavbar}>
+              <Link to="/me" className="nav-link active right" onClick={toggleNavbar}>
                 Profile
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/" onClick={logout}>
+              <a className="nav-link right" href="/" onClick={logout}>
                 Logout
               </a>
             </li>
@@ -67,7 +69,7 @@ function Header() {
         ) : (
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link to="/login" className="nav-link" onClick={toggleNavbar}>
+              <Link to="/login" className="nav-link right" onClick={toggleNavbar}>
                 Login
               </Link>
             </li>

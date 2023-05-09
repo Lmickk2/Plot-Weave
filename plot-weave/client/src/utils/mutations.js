@@ -85,3 +85,58 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const ADD_FOLLOWER = gql`
+  mutation AddFollower($followeeId: ID!) {
+    followUser(followeeId: $followeeId) {
+      _id
+      username
+      followers {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+export const REMOVE_FOLLOWER = gql`
+  mutation RemoveFollower($followeeId: ID!) {
+    unfollowUser(followeeId: $followeeId) {
+      _id
+      username
+      followers {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+export const ADD_LIKE = gql`
+  mutation likePost($postId: ID!) {
+    likePost(postId: $postId) {
+      _id
+      likes {
+        _id
+        username
+      }
+      likeCount
+    }
+  }
+`;
+
+export const REMOVE_LIKE = gql`
+mutation RemoveLike($postId: ID!) {
+  unlikePost(postId: $postId) {
+    _id
+    postTitle
+    postText
+    postAuthor
+    createdAt
+    likes {
+      _id
+      username
+    }
+  }
+}
+`

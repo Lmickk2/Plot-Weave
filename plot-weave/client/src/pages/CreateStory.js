@@ -98,13 +98,6 @@ const CreateStory = () => {
                     onChange={handleChange}
                   ></textarea>
                 </div>
-                <p
-                  className={`type-white ${
-                    characterCount === 3000 || error ? 'text-danger' : ''
-                  }`}
-                >
-                  Character Count: {characterCount}/3000
-                </p>
 
                 <button className="weaveBtn" type="submit">
                   Create Post !

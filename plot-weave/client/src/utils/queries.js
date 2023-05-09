@@ -6,6 +6,7 @@ export const QUERY_USER = gql`
       _id
       username
       email
+      followers
       posts {
         _id
         postText
@@ -33,6 +34,7 @@ export const QUERY_POSTS = gql`
       postText
       postAuthor
       createdAt
+      likes
     }
   }
 `;
@@ -70,6 +72,7 @@ export const QUERY_SINGLE_POST = gql`
       postText
       postAuthor
       createdAt
+      likes
       comments {
         _id
         commentText

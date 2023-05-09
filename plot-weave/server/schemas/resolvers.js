@@ -158,6 +158,93 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    followUser: async (parent, { followeeId }, { user }) => {
+      if (!user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      // add the followee to the user's following list
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { following: followeeId } },
+        { new: true }
+      );
+
+      // add the user to the followee's followers list
+      const updatedFollowee = await User.findOneAndUpdate(
+        { _id: followeeId },
+        { $addToSet: { followers: user._id } },
+        { new: true }
+      );
+
+      return updatedUser;
+    },
+
+    unfollowUser: async (parent, { followeeId }, { user }) => {
+      if (!user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      // remove the followee from the user's following list
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $pull: { following: followeeId } },
+        { new: true }
+      );
+
+      // remove the user from the followee's followers list
+      const updatedFollowee = await User.findOneAndUpdate(
+        { _id: followeeId },
+        { $pull: { followers: user._id } },
+        { new: true }
+      );
+
+      return updatedUser;
+    },
+
+    likePost: async (parent, { postId }, { user }) => {
+      if (!user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      // add the post to the user's liked posts list
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { likedPosts: postId } },
+        { new: true }
+      );
+
+      // increment the post's likes count
+      const updatedPost = await OriginalPost.findOneAndUpdate(
+        { _id: postId },
+        { $inc: { likes: 1 } },
+        { new: true }
+      );
+
+      return updatedPost;
+    },
+
+    unlikePost: async (parent, { postId }, { user }) => {
+      if (!user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      // remove the post from the user's liked posts list
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $pull: { likedPosts: postId } },
+        { new: true }
+      );
+
+      // decrement the post's likes count
+      const updatedPost = await OriginalPost.findOneAndUpdate(
+        { _id: postId },
+        { $inc: { likes: -1 } },
+        { new: true }
+      );
+
+      return updatedPost;
+    }
   },
 };
 

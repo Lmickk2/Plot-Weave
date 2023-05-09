@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import { Helmet } from "react-helmet";
 import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
-import betaTester from "../images/beta.png"
+import betaTester from "../images/beta.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,6 +12,7 @@ import {
   faFacebook,
   faTwitter,
   faYoutube,
+  faUsers,
 } from "@fortawesome/free-brands-svg-icons";
 
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
@@ -64,7 +65,6 @@ const Profile = () => {
       modal.classList.toggle("show");
     }
   };
-  
 
   const handleBioChange = (event) => {
     setBio(event.target.value);
@@ -86,7 +86,6 @@ const Profile = () => {
       setBio(data.updateUser.bio);
       setProfilePicture(null);
       setShowEditProfile(false);
-
 
       const profile = Auth.getProfile();
       profile.data.bio = data.updateUser.bio;
@@ -124,18 +123,20 @@ const Profile = () => {
         <div className="profile-container">
           <div className="profile-info">
             <div className="prof-head">
-              <img src={betaTester} className="profile-img" alt="" />
-              <div className="user-details">
-                <p className="username">
-                  <b>{userParam ? `${user.username}` : `${user.username}`}</b>
-                </p>
-                <p>{user.bio}</p>
+              <div className="user-identity">
+                <img src={betaTester} className="profile-img" alt="" />
+                <div className="user-details">
+                  <p className="username">
+                    <b>{userParam ? `${user.username}` : `${user.username}`}</b>
+                  </p>
+                  <p>{user.bio}</p>
+                </div>
                 <div className="edit-profile">
                   <span
                     className="pencil-icon"
                     onClick={() => setShowEditProfile(!showEditProfile)}
                   >
-                    &#9998; Edit Profile
+                    &#9998;
                   </span>
                   {showEditProfile && (
                     <div className="modal">
@@ -163,47 +164,77 @@ const Profile = () => {
                       </button>
                     </div>
                   )}
-
-                  <div class="social-media">
-                    <a href="https://www.facebook.com/">
-                      <FontAwesomeIcon icon={faFacebook} id="fb" />
-                    </a>
-                    <a href="https://www.instagram.com/">
-                      <FontAwesomeIcon icon={faInstagram} id="ig" />
-                    </a>
-                    <a href="https://twitter.com/?lang=en">
-                      <FontAwesomeIcon icon={faTwitter} id="tw" />
-                    </a>
-                    <a href="https://www.youtube.com/">
-                      <FontAwesomeIcon icon={faYoutube} id="yt" />
-                    </a>
-                  </div>
+                </div>
+                <div className="user-stats">
+                  <p>Followers
+                    <br/>
+                    {user.followers}
+                  </p>
+                  <p>Stories
+                    <br/>
+                    {user.posts.length}
+                  </p>
+                  <p>Weaves
+                    <br/>
+                    {user.followers}
+                  </p>
+                </div>
+                <div class="social-media">
+                  <a href="https://www.facebook.com/">
+                    <FontAwesomeIcon icon={faFacebook} id="fb" />
+                  </a>
+                  <a href="https://www.instagram.com/">
+                    <FontAwesomeIcon icon={faInstagram} id="ig" />
+                  </a>
+                  <a href="https://twitter.com/?lang=en">
+                    <FontAwesomeIcon icon={faTwitter} id="tw" />
+                  </a>
+                  <a href="https://www.youtube.com/">
+                    <FontAwesomeIcon icon={faYoutube} id="yt" />
+                  </a>
                 </div>
               </div>
             </div>
-         <div className="user-activity">
-      <h3>{user?.username}'s Posts</h3>
-      <hr />
-      <div className="user-posts">
-        {displayedPosts?.map((post) => (
-          <div key={post._id} className="post">
-            <h4>
-              <Link to={`/post/${post._id}`}>{post.postTitle}</Link>{" "}
-              <span className="post-date">
-                {new Date(post.createdAt).toLocaleDateString()}
-              </span>
-            </h4>
-            <p>{post.postText.slice(0, 150) + "..."}</p>
-          </div>
-        ))}
-        {!showAllPosts && displayedPosts?.length < (user?.posts?.length || 0) && (
-          <button onClick={handleViewMore} className="show-view">View More</button>
-        )}
-        {showAllPosts && (
-          <button onClick={handleViewLess} className="show-view">View Less</button>
-        )}
-      </div>
-    </div>
+            <div className="prof-nav">
+              <button onClick={() => setShowThoughts(false)}>About</button>
+              <button onClick={() => setShowThoughts(true)}>Weaves</button>
+              <button>Following</button>
+            </div>
+            
+            <div className="split-section">
+            <div className="about-me">
+              <p>Founder of Plot Weave | Software Engineer <br/> <br/>
+              As a web developer with a background in both physical and digital art, I combine a unique blend of creativity and technical expertise to deliver high-quality and responsive designs. With a sharp eye for design and the ability to think outside the box, I approach web development as both an art and a science. Whether I am developing a sleek and intuitive user interface or optimizing website performance, I strive to exceed the expectations of both users and clients. I am passionate about leveraging technology to create engaging and user-friendly web experiences, and am dedicated to staying up-to-date with the latest web development trends and techniques.</p>
+            </div>
+            <div className="user-activity">
+              <h3>{user?.username}'s Posts</h3>
+              <p>Viewing {user.posts.length} Posts</p>
+              <div className="user-posts">
+                {displayedPosts?.map((post) => (
+                  <div key={post._id} className="post">
+                    <h4>
+                      <Link to={`/post/${post._id}`}>{post.postTitle}</Link>{" "}
+                      <span className="post-date">
+                        {/* {new Date(post.createdAt).toLocaleDateString()} */}
+                      </span>
+                    </h4>
+                    <p>{post.postText.slice(0, 150) + "..."}</p>
+                  </div>
+                ))}
+                {!showAllPosts &&
+                  displayedPosts?.length < (user?.posts?.length || 0) && (
+                    <button onClick={handleViewMore} className="show-view">
+                      View More
+                    </button>
+                  )}
+                {showAllPosts && (
+                  <button onClick={handleViewLess} className="show-view">
+                    View Less
+                  </button>
+                )}
+              </div>
+            </div>
+            </div>
             <div className="recently-answered"></div>
           </div>
         </div>

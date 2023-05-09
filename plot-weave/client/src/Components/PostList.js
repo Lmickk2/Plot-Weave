@@ -11,7 +11,7 @@ const PostList = ({ title = "All Posts", showUsername }) => {
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div className="center-grid">
+        <div className="center">
           <div className="post-list">
             {data &&
               data.posts &&

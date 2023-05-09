@@ -27,6 +27,12 @@ const userSchema = new Schema({
       ref: 'OriginalPost',
     },
   ],
+  followers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ],
   profilePicture: {
     data: {
       type: Buffer,

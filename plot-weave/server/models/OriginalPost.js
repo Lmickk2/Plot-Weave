@@ -30,6 +30,10 @@ const postSchema = new Schema({
       return date.toLocaleString('en-US', { month: 'long', day: 'numeric' });
     }
   },
+  likes: {
+    type: Number,
+    default: 0
+  },
   comments: [
     {
       commentText: {
