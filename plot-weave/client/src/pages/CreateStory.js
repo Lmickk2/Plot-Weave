@@ -111,9 +111,12 @@ const CreateStory = () => {
           </form>
           </div>
           ): (
+            <div className="success">
             <h2>
               Story Published!
             </h2>
+            <Link to="/me">View Post</Link>
+            </div>
           )}
         </>
       ) : (

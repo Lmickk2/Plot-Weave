@@ -12,6 +12,7 @@ scalar Upload
     profilePicture: Upload
     bio: String
     posts: [OriginalPost]!
+    weaves: [Weave]!
     followers: [User!]
     following: [User!]
   }
@@ -26,7 +27,6 @@ scalar Upload
     user: [User]!
     likes: Int!
   }
-  
 
   type Comment {
     _id: ID
@@ -46,8 +46,8 @@ scalar Upload
     posts(username: String): [OriginalPost]
     post(postId: ID!): OriginalPost
     me: User
-    weaves(keyword: String!): [Weave!]!
-    weave(id: ID!): Weave
+    weaves(username: String): [Weave]
+    weave(weaveId: ID!): Weave
   }
   type Weave {
     _id: ID
@@ -56,7 +56,7 @@ scalar Upload
     weaveAuthor: String
     createdAt: String
     comments: [Comment]!
-    likes: [User!]!
+    user: [User]!
   }
 
   type Mutation {

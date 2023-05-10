@@ -24,6 +24,7 @@ import Weave from './pages/Weave';
 import Community from './pages/Community';
 import Footer from './Components/Footer';
 import About from './pages/About';
+import SingleWeave from './pages/SingleWeave';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -60,6 +61,7 @@ function App() {
         <Route path="/about" element={<About/>}/>
         <Route path="/community" element={<Community/>}/>
         <Route path="/post/:postId" element={<SinglePost/>}/>
+        <Route path="/weave/:weaveId" element={<SingleWeave/>}/>
         <Route path="/profile/:username" element={<Profile/>} />
         <Route exact path="/weave" element={<Weave/>} />
         <Route path="/me" element={<Profile/>}/>

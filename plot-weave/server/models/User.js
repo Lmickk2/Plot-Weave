@@ -27,6 +27,12 @@ const userSchema = new Schema({
       ref: 'OriginalPost',
     },
   ],
+  weaves: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Weave',
+    },
+  ],
   followers: [
     {
       type: Schema.Types.ObjectId,

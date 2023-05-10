@@ -64,15 +64,6 @@ a:hover {
   border: transparent !important;
 }
 
-.navbar-toggler {
-  color: black !important;
-}
-
-.navbar-toggler-icon {
-  color: black !important;
-  border-color: black;
-}
-
 .top {
   margin-top: 2rem;
 }
@@ -108,7 +99,7 @@ a:hover {
 
 @media screen and (max-width:768px) {
   .hero {
-    padding-top: 40% !important;
+    padding-top: 25% !important;
     display: inherit !important;
   }
   .intro {
@@ -118,8 +109,14 @@ a:hover {
   .intro h1 {
     font-size: 42px !important;
   }
+  .demo {
+    width: 100% !important;
+  }
   .weave {
-    display: none !important;
+    display: block !important;
+    height: 20em !important;
+    margin: auto !important;
+    padding-top: 7em !important;
   }
   .section-2 {
     padding-bottom: 5em;
@@ -145,6 +142,11 @@ a:hover {
     width: 4rem !important;
     height: 4rem !important;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.459) !important;
+  }
+  .navbar-collapse {
+    z-index: 1;
+    position: relative;
+    box-shadow: 0px 5px 5px #0000001a;
   }
 }
 
@@ -416,6 +418,32 @@ a:hover {
     }
   }
 
+  @media screen and (max-width:768px) {
+    .success h2 {
+      font-size: 42px;
+    }
+  
+    .success a {
+      text-decoration: underline;
+      font-size: 16px !important;
+    }
+  }
+
+  .success {
+    background: url('./images/coolbg.png');
+    height: 100vh;
+    padding-top: 15em;
+  }
+
+  .success h2 {
+    font-size: 52px;
+  }
+
+  .success a {
+    text-decoration: underline;
+    font-size: 22px !important;
+  }
+
 /* SINGLE POST */
 
 @media screen and (max-width:768px) {
@@ -552,13 +580,26 @@ a:hover {
 
 /* LOGIN */
 
+@media screen and (max-width:768px) {
+  .login-cont {
+    width: 80% !important;
+  }
+}
+
+.cool-bg {
+  background: url('./images/coolbg.png');
+  height: 100vh;
+}
+
 .login-cont {
   margin: auto;
-  margin-top: 5rem;
   height: 30rem;
   width: 50%;
   padding: 3em 1em;
+  transform: translateY(5em);
   border-radius: 1rem;
+  backdrop-filter: blur(5px);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.048);
 }
 
 .login-cont h2 {  
@@ -573,6 +614,7 @@ a:hover {
 .cred-input {
   padding: 0.5rem;
   width: 70%;
+  background: transparent;
   height: 3rem;
   border: none;
   outline: 0px transparent;
@@ -665,6 +707,7 @@ a:hover {
 .author-list {
   display: flex;
   justify-content: center;
+  align-items: center;
   font-weight: bold;
   color: black !important;
 }
@@ -695,6 +738,24 @@ a:hover {
     margin: auto !important;
     margin-top: 2em !important;
   }
+  .split-section {
+    display: block !important;
+  }
+  .about-me {
+    width: 100% !important;
+    margin: auto !important;
+    margin-top: 6em !important;
+  }
+  .user-activity {
+    width: 100% !important;
+  }
+  .prof-head {
+    width: 100% !important;
+  }
+}
+
+.bold {
+  font-weight: bold !important;
 }
 
 .show-view {
@@ -777,6 +838,13 @@ a:hover {
   padding: 5px;
 }
 
+.edit-profile span {
+  float: left;
+  margin-top: 1em;
+  margin-left: 0.7em;
+  font-family: 'PT Sans', sans-serif;
+}
+
 .user-identity {
   align-items: center;
 }
@@ -797,7 +865,7 @@ a:hover {
 .profile-img {
   width: 7em;
   height: 7em;
-  margin-top: 1.5em;
+  margin-top: 2.5em;
   border-radius: 100%;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.233);
 }
@@ -810,7 +878,7 @@ a:hover {
 
 .social-media {
   float: right;
-  margin-top: -1.75em;
+  margin-top: 1em;
 }
 
 .social-media > a {
@@ -854,6 +922,14 @@ a:hover {
   background: transparent;
   font-family: 'PT Sans', sans-serif;
   font-size: 18px;
+}
+
+.right-items {
+  float: right !important;
+}
+
+.follow {
+  float: right !important;
 }
 
 .profile-info {
@@ -940,4 +1016,16 @@ a:hover {
   box-shadow: inset 0px 2px 2px grey;
   padding: 0.3em 1em;
   background-color: #74ee78;
+}
+
+/* Community */
+
+.filter-type button {
+  border: none;
+  background: transparent;
+  margin: 0.3em;
+}
+
+.filter-type button.active {
+  font-weight: bold;
 }

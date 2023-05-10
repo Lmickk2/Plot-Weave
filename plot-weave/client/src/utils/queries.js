@@ -6,9 +6,15 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      followers
       posts {
         _id
+        postTitle
+        postText
+        createdAt
+      }
+      weaves {
+        _id
+        postTitle
         postText
         createdAt
       }
@@ -52,6 +58,18 @@ export const QUERY_USER_POSTS = gql`
   }
 `;
 
+export const QUERY_USER_WEAVES = gql`
+  query getUserWeaves($userId: ID!) {
+    weaves(weaveAuthor: $userId) {
+      _id
+      postTitle
+      postText
+      weaveAuthor
+      createdAt
+    }
+  }
+`;
+
 export const QUERY_WEAVES = gql`
   query getWeaves {
     weaves {
@@ -83,6 +101,24 @@ export const QUERY_SINGLE_POST = gql`
   }
 `;
 
+export const QUERY_SINGLE_WEAVE = gql`
+  query getSingleWeave($weaveId: ID!) {
+    weave(weaveId: $weaveId) {
+      _id
+      postTitle
+      postText
+      weaveAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+        commentAuthor
+        createdAt
+      }
+    }
+  }
+`;
+
 
 export const QUERY_ME = gql`
   query me {
@@ -97,6 +133,13 @@ export const QUERY_ME = gql`
         postTitle
         postText
         postAuthor
+        createdAt
+      }
+      weaves {
+        _id
+        postTitle
+        postText
+        weaveAuthor
         createdAt
       }
     }

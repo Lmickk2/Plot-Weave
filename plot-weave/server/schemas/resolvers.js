@@ -15,10 +15,10 @@ const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate("posts");
+      return User.find().populate("posts").populate("weaves");
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("posts");
+      return User.findOne({ username }).populate("posts").populate("weaves");
     },
     posts: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -27,9 +27,16 @@ const resolvers = {
     post: async (parent, { postId }) => {
       return OriginalPost.findOne({ _id: postId });
     },
+    weave: async (parent, { weaveId }) => {
+      return Weave.findOne({ _id: weaveId });
+    },
+    weaves: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Weave.find(params).sort({ createdAt: -1 });
+    },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("posts");
+        return User.findOne({ _id: context.user._id }).populate("posts").populate("weaves");
       }
       throw new AuthenticationError("You need to be logged in!");
     },
@@ -160,25 +167,29 @@ const resolvers = {
     },
     followUser: async (parent, { followeeId }, { user }) => {
       if (!user) {
-        throw new AuthenticationError("You need to be logged in!");
+        throw new AuthenticationError('You need to be logged in!');
       }
-
-      // add the followee to the user's following list
-      const updatedUser = await User.findOneAndUpdate(
-        { _id: user._id },
-        { $addToSet: { following: followeeId } },
-        { new: true }
-      );
-
-      // add the user to the followee's followers list
-      const updatedFollowee = await User.findOneAndUpdate(
-        { _id: followeeId },
-        { $addToSet: { followers: user._id } },
-        { new: true }
-      );
-
-      return updatedUser;
+    
+      const follower = await User.findById(user._id);
+      const followee = await User.findById(followeeId);
+    
+      if (!follower || !followee) {
+        throw new UserInputError('Invalid user ID');
+      }
+    
+      if (follower.following.includes(followeeId)) {
+        throw new UserInputError('You are already following this user');
+      }
+    
+      follower.following.push(followeeId);
+      followee.followers.push(follower._id);
+    
+      await follower.save();
+      await followee.save();
+    
+      return follower;
     },
+    
 
     unfollowUser: async (parent, { followeeId }, { user }) => {
       if (!user) {

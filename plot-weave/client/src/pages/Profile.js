@@ -16,9 +16,10 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
-import { UPDATE_USER } from "../utils/mutations";
+import { UPDATE_USER, ADD_FOLLOWER } from "../utils/mutations";
 
 import Auth from "../utils/auth";
+import WeaveList from "../Components/WeaveList";
 
 const Profile = () => {
   const { username: userParam } = useParams();
@@ -27,6 +28,7 @@ const Profile = () => {
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [bio, setBio] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
+  const [showWeaves, setShowWeaves] = useState(false);
 
   const [updateUser, { error }] = useMutation(UPDATE_USER);
 
@@ -106,6 +108,44 @@ const Profile = () => {
     setShowAllPosts(false);
   };
 
+  const [followUser] = useMutation(ADD_FOLLOWER);
+
+  const handleFollow = async () => {
+    try {
+      await followUser({
+        variables: { followeeId: user._id },
+        update: (cache, { data }) => {
+          // Update the cached user data with the new follower
+          const cachedUser = cache.readQuery({
+            query: QUERY_USER,
+            variables: { username: userParam },
+          });
+          cache.writeQuery({
+            query: QUERY_USER,
+            variables: { username: userParam },
+            data: {
+              user: {
+                ...cachedUser.user,
+                followers: [
+                  ...cachedUser.user.followers,
+                  data.followUser.followers[0],
+                ],
+              },
+            },
+          });
+        },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const [selectedButton, setSelectedButton] = useState("about");
+
+  const handleButtonClick = (button) => {
+    setSelectedButton(button);
+  };
+
   if (loading) {
     return (
       <div className="spinner">
@@ -129,14 +169,30 @@ const Profile = () => {
                   <p className="username">
                     <b>{userParam ? `${user.username}` : `${user.username}`}</b>
                   </p>
-                  <p>{user.bio}</p>
+                </div>
+                <div className="user-stats">
+                  <p>
+                    Followers
+                    <br />
+                    0
+                  </p>
+                  <p>
+                    Stories
+                    <br />
+                    {user.posts.length}
+                  </p>
+                  <p>
+                    Weaves
+                    <br />
+                    {user.weaves.length}
+                  </p>
                 </div>
                 <div className="edit-profile">
                   <span
                     className="pencil-icon"
                     onClick={() => setShowEditProfile(!showEditProfile)}
                   >
-                    &#9998;
+                   Edit Profile &#9998;
                   </span>
                   {showEditProfile && (
                     <div className="modal">
@@ -165,20 +221,6 @@ const Profile = () => {
                     </div>
                   )}
                 </div>
-                <div className="user-stats">
-                  <p>Followers
-                    <br/>
-                    {user.followers}
-                  </p>
-                  <p>Stories
-                    <br/>
-                    {user.posts.length}
-                  </p>
-                  <p>Weaves
-                    <br/>
-                    {user.followers}
-                  </p>
-                </div>
                 <div class="social-media">
                   <a href="https://www.facebook.com/">
                     <FontAwesomeIcon icon={faFacebook} id="fb" />
@@ -196,44 +238,80 @@ const Profile = () => {
               </div>
             </div>
             <div className="prof-nav">
-              <button onClick={() => setShowThoughts(false)}>About</button>
-              <button onClick={() => setShowThoughts(true)}>Weaves</button>
-              <button>Following</button>
+              <button
+                className={selectedButton === "about" ? "bold" : ""}
+                onClick={() => handleButtonClick("about")}
+              >
+                About
+              </button>
+              <button
+                className={
+                  selectedButton === "weaves"
+                    ? "bold weave-button"
+                    : "weave-button"
+                }
+                onClick={() => handleButtonClick("weaves")}
+                onClick={() => setShowWeaves(!showWeaves)}
+              >
+                Weaves
+              </button>
+              <button
+                className={selectedButton === "following" ? "bold" : ""}
+                onClick={() => handleButtonClick("following")}
+              >
+                Following
+              </button>
+              <button
+                className={
+                  selectedButton === "follow" ? "bold follow" : "follow"
+                }
+                onClick={() => handleButtonClick("follow")}
+              >
+                Follow
+              </button>
             </div>
-            
             <div className="split-section">
-            <div className="about-me">
-              <p>Founder of Plot Weave | Software Engineer <br/> <br/>
-              As a web developer with a background in both physical and digital art, I combine a unique blend of creativity and technical expertise to deliver high-quality and responsive designs. With a sharp eye for design and the ability to think outside the box, I approach web development as both an art and a science. Whether I am developing a sleek and intuitive user interface or optimizing website performance, I strive to exceed the expectations of both users and clients. I am passionate about leveraging technology to create engaging and user-friendly web experiences, and am dedicated to staying up-to-date with the latest web development trends and techniques.</p>
-            </div>
-            <div className="user-activity">
-              <h3>{user?.username}'s Posts</h3>
-              <p>Viewing {user.posts.length} Posts</p>
-              <div className="user-posts">
-                {displayedPosts?.map((post) => (
-                  <div key={post._id} className="post">
-                    <h4>
-                      <Link to={`/post/${post._id}`}>{post.postTitle}</Link>{" "}
-                      <span className="post-date">
-                        {/* {new Date(post.createdAt).toLocaleDateString()} */}
-                      </span>
-                    </h4>
-                    <p>{post.postText.slice(0, 150) + "..."}</p>
-                  </div>
-                ))}
-                {!showAllPosts &&
-                  displayedPosts?.length < (user?.posts?.length || 0) && (
-                    <button onClick={handleViewMore} className="show-view">
-                      View More
-                    </button>
-                  )}
-                {showAllPosts && (
-                  <button onClick={handleViewLess} className="show-view">
-                    View Less
-                  </button>
+              <div className="about-me">
+                {user.bio === undefined ? (
+                  <p>No bio yet.</p>
+                ) : (
+                <p>
+                {user.bio}
+                </p>
                 )}
               </div>
-            </div>
+              {showWeaves ? (
+                <WeaveList />
+              ) : (
+                <div className="user-activity">
+                  <h3>{user?.username}'s Posts</h3>
+                  <p>Viewing {user.posts.length} Posts</p>
+                  <div className="user-posts">
+                    {displayedPosts?.map((post) => (
+                      <div key={post._id} className="post">
+                        <h4>
+                          <Link to={`/post/${post._id}`}>{post.postTitle}</Link>{" "}
+                          <span className="post-date">
+                            {/* {new Date(post.createdAt).toLocaleDateString()} */}
+                          </span>
+                        </h4>
+                        <p>{post.postText.slice(0, 150) + "..."}</p>
+                      </div>
+                    ))}
+                    {!showAllPosts &&
+                      displayedPosts?.length < (user?.posts?.length || 0) && (
+                        <button onClick={handleViewMore} className="show-view">
+                          View More
+                        </button>
+                      )}
+                    {showAllPosts && (
+                      <button onClick={handleViewLess} className="show-view">
+                        View Less
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
             <div className="recently-answered"></div>
           </div>

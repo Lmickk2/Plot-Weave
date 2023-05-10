@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_POSTS } from "../utils/queries";
 import { Link } from "react-router-dom";
+import profilepic from "../images/beta.png";
 
 const PostList = ({ title = "All Posts", showUsername }) => {
   const { loading, data } = useQuery(QUERY_POSTS);
@@ -19,10 +20,12 @@ const PostList = ({ title = "All Posts", showUsername }) => {
                 <div key={post._id}>
                   <div className="post-info">
                     <div className="author-list">
+                      <img src={profilepic} />
                       <p>
-                        <Link to={`/profile/${post.postAuthor}`}>{post.postAuthor}</Link>
+                        <Link to={`/profile/${post.postAuthor}`}>
+                          {post.postAuthor}
+                        </Link>
                       </p>
-                      <img src={post.postAuthor.profilePicture} />
                     </div>
                     <h3>
                       <Link to={`/post/${post._id}`}>{post.postTitle}</Link>

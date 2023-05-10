@@ -6,7 +6,7 @@ import gql from "graphql-tag";
 import { Helmet } from "react-helmet";
 import { QUERY_SINGLE_POST } from "../utils/queries";
 import { Link } from "react-router-dom";
-import profilepic from "../images/profile.png";
+import profilepic from "../images/beta.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUsers,
