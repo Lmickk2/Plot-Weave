@@ -39,6 +39,12 @@ const userSchema = new Schema({
       ref: 'User'
     }
   ],
+  following: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ],
   profilePicture: {
     data: {
       type: Buffer,
@@ -52,6 +58,18 @@ const userSchema = new Schema({
   bio: {
     type: String,
     maxlength: 500,
+  },
+  yt: {
+    type: String,
+  },
+  fb: {
+    type: String,
+  },
+  twt: {
+    type: String,
+  },
+  ig: {
+    type: String,
   },
 });
 

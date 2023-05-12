@@ -16,10 +16,11 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
-import { UPDATE_USER, ADD_FOLLOWER } from "../utils/mutations";
+import { UPDATE_USER, ADD_FOLLOWER, REMOVE_FOLLOWER } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 import WeaveList from "../Components/WeaveList";
+import FollowerList from "../Components/FollowerList";
 
 const Profile = () => {
   const { username: userParam } = useParams();
@@ -27,6 +28,10 @@ const Profile = () => {
   const [showThoughts, setShowThoughts] = useState(false);
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [bio, setBio] = useState("");
+  const [ig, setIg] = useState("");
+  const [fb, setFb] = useState("");
+  const [twt, setTwt] = useState("");
+  const [yt, setYt] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
   const [showWeaves, setShowWeaves] = useState(false);
 
@@ -57,17 +62,20 @@ const Profile = () => {
 
     if (data && data.user) {
       setBio(data.user.bio || "");
+      setIg(data.user.ig || "");
+      setFb(data.user.fb || "");
+      setTwt(data.user.twt || "");
+      setYt(data.user.yt || "");
     }
   }, [loading, user, data, userParam]);
 
   const toggleEditProfile = () => {
-    if (user.username === Auth.getProfile().data.username) {
+    if (Auth.loggedIn() && user.username === Auth.getProfile().data.username) {
       setShowEditProfile(!showEditProfile);
       const modal = document.querySelector(".modal");
       modal.classList.toggle("show");
     }
   };
-
   const handleBioChange = (event) => {
     setBio(event.target.value);
   };
@@ -109,30 +117,78 @@ const Profile = () => {
   };
 
   const [followUser] = useMutation(ADD_FOLLOWER);
+  const [removeFollower] = useMutation(REMOVE_FOLLOWER);
+
+  const [isFollowed, setIsFollowed] = useState(false);
 
   const handleFollow = async () => {
     try {
-      await followUser({
+      const { data } = await followUser({
         variables: { followeeId: user._id },
         update: (cache, { data }) => {
-          // Update the cached user data with the new follower
           const cachedUser = cache.readQuery({
             query: QUERY_USER,
             variables: { username: userParam },
           });
-          cache.writeQuery({
+
+          if (cachedUser && cachedUser.user) {
+            const currentUser = cachedUser.user;
+            const currentFollowers = currentUser.followers || [];
+
+            const newFollower = data?.followUser?.followers[0];
+
+            cache.writeQuery({
+              query: QUERY_USER,
+              variables: { username: user.username },
+              data: {
+                user: {
+                  ...currentUser,
+                  followers: newFollower
+                    ? [...currentFollowers, newFollower]
+                    : [...currentFollowers],
+                    
+                },        
+              },
+            });
+            setIsFollowed(true);
+          }
+        },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleUnfollow = async () => {
+    try {
+      const { data } = await removeFollower({
+        variables: { followeeId: user._id },
+        update: (cache, { data }) => {
+          const cachedUser = cache.readQuery({
             query: QUERY_USER,
             variables: { username: userParam },
-            data: {
-              user: {
-                ...cachedUser.user,
-                followers: [
-                  ...cachedUser.user.followers,
-                  data.followUser.followers[0],
-                ],
-              },
-            },
           });
+
+          if (cachedUser && cachedUser.user) {
+            const currentUser = cachedUser.user;
+            const currentFollowers = currentUser.followers || [];
+
+            const updatedFollowers = currentFollowers.filter(
+              (follower) => follower._id !== data?.unfollowUser?._id
+            );
+
+            cache.writeQuery({
+              query: QUERY_USER,
+              variables: { username: user.username },
+              data: {
+                user: {
+                  ...currentUser,
+                  followers: updatedFollowers,
+                },
+              },
+            });
+            setIsFollowed(false);
+          }
         },
       });
     } catch (e) {
@@ -148,9 +204,7 @@ const Profile = () => {
 
   if (loading) {
     return (
-      <div className="spinner">
-        <div className="spinner1"></div>
-      </div>
+<div class="loader"></div>
     );
   }
 
@@ -174,7 +228,7 @@ const Profile = () => {
                   <p>
                     Followers
                     <br />
-                    0
+                    {user.followers.length}
                   </p>
                   <p>
                     Stories
@@ -187,12 +241,13 @@ const Profile = () => {
                     {user.weaves.length}
                   </p>
                 </div>
+                {Auth.loggedIn() && user.username === Auth.getProfile().data.username && (
                 <div className="edit-profile">
                   <span
                     className="pencil-icon"
                     onClick={() => setShowEditProfile(!showEditProfile)}
                   >
-                   Edit Profile &#9998;
+                    Edit Profile &#9998;
                   </span>
                   {showEditProfile && (
                     <div className="modal">
@@ -210,6 +265,38 @@ const Profile = () => {
                           accept=".jpg,.jpeg,.png"
                           onChange={handleProfilePictureChange}
                         />
+                        <input
+                          type="text"
+                          placeholder="https://www.instagram.com/"
+                          className="form-control"
+                          name="ig"
+                          value={ig}
+                          onChange={(event) => setIg(event.target.value)}
+                        />
+                        <input
+                          type="text"
+                          placeholder="https://www.facebook.com/"
+                          className="form-control"
+                          name="fb"
+                          value={fb}
+                          onChange={(event) => setFb(event.target.value)}
+                        />
+                        <input
+                          type="text"
+                          placeholder="https://twitter.com/?lang=en"
+                          className="form-control"
+                          name="twt"
+                          value={twt}
+                          onChange={(event) => setTwt(event.target.value)}
+                        />
+                        <input
+                          type="text"
+                          placeholder="https://www.youtube.com/"
+                          className="form-control"
+                          name="yt"
+                          value={yt}
+                          onChange={(event) => setYt(event.target.value)}
+                        />
                         <button type="submit">Update Profile</button>
                       </form>
                       <button
@@ -221,7 +308,8 @@ const Profile = () => {
                     </div>
                   )}
                 </div>
-                <div class="social-media">
+                )}
+                <div className="social-media">
                   <a href="https://www.facebook.com/">
                     <FontAwesomeIcon icon={faFacebook} id="fb" />
                   </a>
@@ -231,7 +319,7 @@ const Profile = () => {
                   <a href="https://twitter.com/?lang=en">
                     <FontAwesomeIcon icon={faTwitter} id="tw" />
                   </a>
-                  <a href="https://www.youtube.com/">
+                  <a href={`${user.yt}`}>
                     <FontAwesomeIcon icon={faYoutube} id="yt" />
                   </a>
                 </div>
@@ -265,9 +353,9 @@ const Profile = () => {
                 className={
                   selectedButton === "follow" ? "bold follow" : "follow"
                 }
-                onClick={() => handleButtonClick("follow")}
+                onClick={isFollowed ? handleUnfollow : handleFollow}
               >
-                Follow
+                {isFollowed ? "Unfollow" : "Follow"}
               </button>
             </div>
             <div className="split-section">
@@ -275,9 +363,7 @@ const Profile = () => {
                 {user.bio === undefined ? (
                   <p>No bio yet.</p>
                 ) : (
-                <p>
-                {user.bio}
-                </p>
+                  <p>{user.bio}</p>
                 )}
               </div>
               {showWeaves ? (
@@ -316,6 +402,7 @@ const Profile = () => {
             <div className="recently-answered"></div>
           </div>
         </div>
+        {/* <FollowerList/> */}
       </div>
     </div>
   );

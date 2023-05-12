@@ -6,6 +6,11 @@ export const QUERY_USER = gql`
       _id
       username
       email
+      bio
+      yt
+      twt
+      fb
+      ig
       posts {
         _id
         postTitle
@@ -17,6 +22,15 @@ export const QUERY_USER = gql`
         postTitle
         postText
         createdAt
+      }
+      followers {
+        _id
+        username
+      }
+
+      following {
+        _id
+        username
       }
     }
   }
@@ -44,7 +58,6 @@ export const QUERY_POSTS = gql`
     }
   }
 `;
-
 
 export const QUERY_USER_POSTS = gql`
   query getUserPosts($userId: ID!) {
@@ -127,6 +140,10 @@ export const QUERY_ME = gql`
       username
       email
       bio
+      yt
+      twt
+      fb
+      ig
       profilePicture
       posts {
         _id
@@ -141,6 +158,10 @@ export const QUERY_ME = gql`
         postText
         weaveAuthor
         createdAt
+      }
+      followers {
+        _id
+        username
       }
     }
   }

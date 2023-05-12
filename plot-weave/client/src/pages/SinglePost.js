@@ -94,9 +94,7 @@ const SinglePost = () => {
 
   if (loading) {
     return (
-      <div className="spinner">
-        <div className="spinner1"></div>
-      </div>
+      <div class="loader"></div>
     );
   }
 

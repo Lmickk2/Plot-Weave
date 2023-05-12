@@ -15,7 +15,7 @@ const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate("posts").populate("weaves");
+      return User.find().populate("posts").populate("weaves").populate("followers");
     },
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate("posts").populate("weaves");
@@ -66,11 +66,11 @@ const resolvers = {
       return { token, user };
     },
 
-    updateUser: async (parent, { profilePicture, bio }, context) => {
+    updateUser: async (parent, { profilePicture, bio, yt, fb, twt, ig }, context) => {
       if (context.user) {
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { profilePicture, bio },
+          { profilePicture, bio, yt, ig, fb, twt },
           { new: true }
         ).populate("posts");
   

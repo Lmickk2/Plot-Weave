@@ -18,7 +18,7 @@ const { username: userParam } = useParams();
 
   useEffect(() => {
     if (loading) {
-      return;
+      <div class="loader"></div>
     }
 
     if (!user?.username) {

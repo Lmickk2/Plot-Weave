@@ -10,7 +10,7 @@ const PostList = ({ title = "All Posts", showUsername }) => {
   return (
     <div>
       {loading ? (
-        <div>Loading...</div>
+        <div class="loader"></div>
       ) : (
         <div className="center">
           <div className="post-list">
