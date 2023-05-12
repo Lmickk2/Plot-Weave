@@ -25,7 +25,7 @@ import Community from './pages/Community';
 import Footer from './Components/Footer';
 import About from './pages/About';
 import SingleWeave from './pages/SingleWeave';
-
+import React, { useState } from 'react';
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -48,11 +48,15 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [loading, setLoading] = useState(false);
   return (
     <ApolloProvider client={client}>
     <Router>
       <Header/>
     <div className="App">
+    {loading ? (
+  <div className="loader"></div>
+) : (
       <Routes>
         <Route path="/story" element={<Story/>}/>
         <Route path="/login" element={<Login/>}/>
@@ -67,6 +71,7 @@ function App() {
         <Route path="/me" element={<Profile/>}/>
         <Route path="*" element={<Home />} />
       </Routes>
+)}
     </div>
   </Router>
   </ApolloProvider>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import RandomProfiles from "../Components/TrendingProfiles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook, faPen, faWater } from "@fortawesome/free-solid-svg-icons";
+import Footer from "../Components/Footer";
 
 function Home() {
   return (
@@ -16,15 +17,12 @@ function Home() {
             Branch off of any story, at any line. Create the storyline that you
             want. Within someone else's universe.
           </p>
-          <Link to="/create">
-            <button className="start">Start Weaving</button>
-          </Link>
+            <button className="start"><Link to="/community">Start Reading</Link></button>
         </div>
         <div className="demo">
           <img src={weave} className="weave" />
         </div>
       </div>
-      {/* <div className="divider"></div> */}
       <div className="section-2">
         <h1>How to use Plot Weave</h1>
         <p>Learn about how to best utilize Plot Weave to get your work discovered by thousands of daily users!</p>
@@ -74,6 +72,7 @@ function Home() {
         <h1>Explore Trending Creators</h1>
         <RandomProfiles />
       </div>
+      <Footer/>
     </>
   );
 }

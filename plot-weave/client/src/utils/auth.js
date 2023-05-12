@@ -26,11 +26,19 @@ class AuthService {
   getToken() {
     return localStorage.getItem('id_token');
   }
+  
 
   login(idToken) {
     localStorage.setItem('id_token', idToken);
-    window.location.assign('/');
+    const lastPage = localStorage.getItem('last_page');
+    if (lastPage) {
+      localStorage.removeItem('last_page'); // Remove the stored URL to avoid redirecting to it again
+      window.location.assign(lastPage);
+    } else {
+      window.location.assign('/');
+    }
   }
+  
 
   logout() {
     localStorage.removeItem('id_token');
