@@ -67,7 +67,7 @@ function App() {
         <Route path="/post/:postId" element={<SinglePost/>}/>
         <Route path="/weave/:weaveId" element={<SingleWeave/>}/>
         <Route path="/profile/:username" element={<Profile/>} />
-        <Route exact path="/weave" element={<Weave/>} />
+        <Route path="/weave" element={<Weave/>} />
         <Route path="/me" element={<Profile/>}/>
         <Route path="*" element={<Home />} />
       </Routes>

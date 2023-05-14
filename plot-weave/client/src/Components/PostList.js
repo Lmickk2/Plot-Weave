@@ -17,20 +17,22 @@ const PostList = ({ title = "All Posts", showUsername }) => {
             {data &&
               data.posts &&
               data.posts.map((post) => (
-                <div key={post._id}>
+                <div key={post._id} className="post-container">
                   <div className="post-info">
                     <div className="author-list">
                       <img src={profilepic} />
                       <p>
                         <Link to={`/profile/${post.postAuthor}`}>
                           {post.postAuthor}
-                        </Link>
+                        </Link> • {post.createdAt}
                       </p>
                     </div>
                     <h3>
-                      <Link to={`/post/${post._id}`}>{post.postTitle}</Link>
+                      <Link to={`/post/${post._id}`} className="title-a">{post.postTitle}</Link>
                     </h3>
-                    <p className="date">{post.createdAt}</p>
+                    <p className="preview-text">
+                      {post.postText.slice(0, 200) + "..."}
+                    </p>
                   </div>
                 </div>
               ))}

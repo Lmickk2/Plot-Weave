@@ -166,8 +166,9 @@ footer {
   text-align: center;
   font-size: 0.75em;
   bottom:0;
-  width: 100%;
+  width: 90%;
   height: 30px;
+  margin: auto;
 }
 
 .foot-elements {
@@ -186,7 +187,7 @@ footer {
 
 @media screen and (max-width:768px) {
   .hero {
-    padding-top: 15% !important;
+    padding-top: 40% !important;
     display: inherit !important;
   }
   .intro {
@@ -194,7 +195,7 @@ footer {
     width: 90% !important;
   }
   .intro h1 {
-    font-size: 42px !important;
+    font-size: 52px !important;
   }
   .demo {
     width: 100% !important;
@@ -204,10 +205,11 @@ footer {
     position: relative;
   }
   .weave {
-    display: block !important;
-    height: 25em !important;
+    display: none!important;
+    /* display: block !important;
+    height: 20em !important;
     margin: auto !important;
-    padding-top: 5em !important;
+    padding-top: 5em !important; */
   }
   .section-2 {
     padding-bottom: 5em;
@@ -222,6 +224,10 @@ footer {
   .how-section {
     display: block !important;
     width: 100% !important;
+  }
+  .how-p {
+    width: 90%;
+    margin: auto;
   }
   .how-to {
     display: block !important;
@@ -239,6 +245,9 @@ footer {
     position: relative;
     box-shadow: 0px 5px 5px #0000001a;
   }
+  .right {
+    margin-right: inherit !important;
+  }
 }
 
 .hero {
@@ -246,7 +255,7 @@ footer {
     display: flex;
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(10,232,132,0.19979866946778713) 61%, rgba(255,255,255,1) 100%);
     background-size: cover;
-    height: 100vh;
+    height: 90vh;
 }
 
 .intro {
@@ -358,6 +367,7 @@ footer {
 }
 
 .section-3 {
+  margin-top: 10%;
   font-family: 'PT Sans', sans-serif;
   font-weight: bold;
   margin-bottom: 5em;
@@ -393,6 +403,7 @@ footer {
   .about-pg {
     width: 90% !important;
     margin-top: 3em !important;
+    padding-bottom: 3em;
   }
 }
 
@@ -529,7 +540,6 @@ footer {
   }
 
   .success {
-    background: url('./images/coolbg.png');
     height: 100vh;
     padding-top: 15em;
   }
@@ -555,10 +565,13 @@ footer {
     margin-top: 3em !important;
   }
   .author-info {
+    height: 40vh !important;
     width: 90% !important;
     margin: auto !important;
     margin-top: 3em !important;
     text-align: center !important;
+    border-left: none !important;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.13);
   }
   .author-info h3 {
     margin: auto !important;
@@ -566,11 +579,15 @@ footer {
   .author-info img {
     margin: auto !important;
     display: block;
+    transform: translateY(1em);
     margin-top: 1rem !important;
     box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.356);
     height: 5rem !important;
     width: 5rem !important;
     border-radius: 100%;
+  }
+  .user-options {
+    transform: translateY(1.2em);
   }
 }
 
@@ -579,15 +596,39 @@ footer {
 }
 
 .single-post {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'PT Sans', sans-serif !important;
   width: 40%;
   margin-left: 10%;
-  margin-top: 10%;
+  margin-top: 7%;
 }
 
 .author-section {
   display: flex;
+  font-family: 'PT Sans', sans-serif !important;
 }
+
+.created-by {
+  display: flex;
+  align-items: center;
+}
+
+.weave-on-off {
+  display: flex;
+  align-items: center;
+  font-family: 'PT Sans', sans-serif !important;
+}
+
+.toggle {
+  margin-top: 0.3em;
+}
+
+.weave-on-off span {
+  font-size: 16px;
+  margin-left: 0.3em;
+  margin-top: 0.6em;
+  font-weight: normal;
+}
+
 
 .likes {
   display: flex;
@@ -612,6 +653,11 @@ footer {
   font-weight: bold;
 }
 
+.author-section span {
+  font-size: 14px;
+  margin-left: 0.5em;
+}
+
 .author-section img {
   width: 2rem;
   height: 2rem;
@@ -632,6 +678,7 @@ footer {
 
 .post-container {
   text-align: left;
+  margin-top: 1.3em;
 }
 
 .author-info {
@@ -682,9 +729,13 @@ footer {
 @media screen and (max-width:900px) {
   .login-cont {
     width: 80% !important;
+    transform: translateY(1.15em) !important;
   }
   .cool-bg {
     background: none !important;
+  }
+  .enter-cred {
+    margin-top: 0.2rem !important;
   }
 }
 
@@ -824,60 +875,63 @@ footer {
 
 @media screen and (max-width: 768px) {
   .post-list {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    justify-items: inherit !important;
     margin-top: 5% !important;
   }
   .post-list h3 {
-    font-size: 18px !important;
+    font-size: 14px !important;
   }
-  .center {
-    margin-left: 0.7em !important;
+  .post-info {
+    width: 100% !important;
   }
 }
 
 .center {
   margin: auto;
   display: inline-grid;
+  width: 80%;
 }
 
-
 .post-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
-  justify-content: space-evenly;
+  display: block;
+  margin: auto;
+  justify-content: space-between;
   margin-top: 5%;
 }
 
 .post-info {
-  border-radius: 1rem;
-  width: 10em;
+  width: 85%;
 }
 
 .post-list h3 {
   text-align: left;
-  font-size: 24px;
-  margin-left: 0.5rem;
+  font-weight: bold;
+  margin-top: -0.3em;
+}
+
+.title-a {
+  font-size: 22px !important;
 }
 
 .post-list p {
   text-align: left;
   font-size: 14px;
-  margin-top: 5%;
-  width: 80%;
-  margin-left: 0.5rem;
+  margin-top: 2%;
+  width: 100%;
 }
-
 
 .author-list {
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-weight: bold;
+  align-items: center !important;
   color: black !important;
+}
+
+.post-list .author-list p {
+  margin-left: 0.7em;
+}
+
+.preview-text {
+  font-size: 14px;
 }
 
 .author-list img {
@@ -888,6 +942,7 @@ footer {
 
 .date {
   color: green;
+  font-size: 14px !important;
 }
 
 /* PROFILE */
@@ -1192,6 +1247,7 @@ footer {
   border: none;
   background: transparent;
   margin: 0.3em;
+  padding: 0.2em 0.5em;
 }
 
 .filter-type button.active {

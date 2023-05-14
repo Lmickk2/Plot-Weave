@@ -13,6 +13,8 @@ import {
   faBookmark,
   faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
+import Switch from "react-switch";
+import "react-switch";
 
 const SinglePost = () => {
   const { postId } = useParams();
@@ -25,6 +27,7 @@ const SinglePost = () => {
   const [hoveredSentence, setHoveredSentence] = useState(null);
   const [clickedSentence, setClickedSentence] = useState(null);
   const [likes, setLikes] = useState(post.likes);
+  const [toggleOn, setToggleOn] = useState(false);
 
   useEffect(() => {
     setLikes(post.likes);
@@ -49,12 +52,11 @@ const SinglePost = () => {
           },
           likeCount(existingLikeCount = 0) {
             return existingLikeCount + 1;
-          }
+          },
         },
       });
     },
   });
-  
 
   const handleLike = () => {
     addLike({
@@ -64,11 +66,11 @@ const SinglePost = () => {
       },
     });
   };
-  
+
   const generateURL = (sentences, selectedIndex) => {
     const precedingSentences = sentences.slice(0, selectedIndex + 1);
     const postText = precedingSentences
-      .join(".")
+      .join(". ")
       .toLowerCase()
       .replace(/\s+/g, "-");
     const selectedSentence = encodeURIComponent(
@@ -93,12 +95,10 @@ const SinglePost = () => {
   };
 
   if (loading) {
-    return (
-      <div class="loader"></div>
-    );
+    return <div class="loader"></div>;
   }
 
-  const sentences = post.postText.split(". ");
+  const sentences = post.postText.split(".");
 
   const sentenceClicked = (index) => {
     setClickedSentence(index);
@@ -109,7 +109,7 @@ const SinglePost = () => {
 
   const sentencesWithActions = sentences.map((sentence, index) => {
     return {
-      text: sentence.trim() + ".",
+      text: sentence.trim() + ". ",
       actions: weaveSentence(index, sentence),
       onClick: () => {
         setClickedSentence(index);
@@ -130,45 +130,55 @@ const SinglePost = () => {
         <div className="author-section">
           <img src={profilepic} />
           <p>{post.postAuthor}</p>
+          <span style={{ fontSize: "1rem" }}>{post.createdAt}</span>
         </div>
         <div className="my-3">
-          <h3 className="created-by right">
-            {post.postTitle}
-            <br />
-            <div className="likes">
+          <h3 className="created-by right">{post.postTitle}</h3>
+          <div className="weave-on-off">
+            <Switch
+              className="toggle"
+              checked={toggleOn}
+              onChange={() => setToggleOn(!toggleOn)}
+            />
+            <span>{toggleOn ? "Weave Mode On" : "Weave Mode Off"}</span>
+          </div>
+          {/* <div className="likes">
               <FontAwesomeIcon className="likeCount" onClick={handleLike} icon={faThumbsUp} />
               <p>{likes}</p>
-            </div>
-            <span style={{ fontSize: "1rem" }}>{post.createdAt}</span>
-          </h3>
-          <div className="post-container">
-            {sentencesWithActions.map((sentence, index) => (
-              <span key={index}>
-                <a
-                  {...sentence.actions}
-                  onMouseEnter={() => setHoveredSentence(index)}
-                  onMouseLeave={() => setHoveredSentence(null)}
-                  onClick={sentence.onClick}
-                >
-                  {sentence.text}
-                </a>
+            </div> */}
 
-                {hoveredSentence === index && (
-                  <span
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "0",
-                      transform: "translateY(-50%)",
-                      backgroundColor: "#fff",
-                      padding: "0.25rem",
-                    }}
-                  >
-                    Weave
+          <div className="post-container">
+            {toggleOn
+              ? sentencesWithActions.map((sentence, index) => (
+                  <span key={index}>
+                    <a
+                      {...sentence.actions}
+                      onMouseEnter={() => setHoveredSentence(index)}
+                      onMouseLeave={() => setHoveredSentence(null)}
+                      onClick={sentence.onClick}
+                    >
+                      {sentence.text}
+                    </a>
+
+                    {hoveredSentence === index && (
+                      <span
+                        style={{
+                          position: "absolute",
+                          top: "50%",
+                          left: "0",
+                          transform: "translateY(-50%)",
+                          backgroundColor: "#fff",
+                          padding: "0.25rem",
+                        }}
+                      >
+                        Weave
+                      </span>
+                    )}
                   </span>
+                ))
+              : (
+                  <p>{post.postText}</p>
                 )}
-              </span>
-            ))}
           </div>
         </div>
         <div className="cont-space"></div>
@@ -177,6 +187,7 @@ const SinglePost = () => {
         <div className="author-header"></div>
         <img src={profilepic} />
         <h3>{post.postAuthor}</h3>
+        <p>{post.postAuthor.bio}</p>
         <div className="user-options">
           <FontAwesomeIcon icon={faUsers} className="followers" />
           <FontAwesomeIcon icon={faBookmark} className="followers" />

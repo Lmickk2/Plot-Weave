@@ -6,12 +6,8 @@ import Auth from '../utils/auth';
 
 const Weave = () => {
   const { search } = useLocation();
-  const queryParams = new URLSearchParams(search);
   const location = useLocation();
   const postTextFromURL = new URLSearchParams(location.search).get('postText');
-  const selectedSentence = new URLSearchParams(location.search).get('selectedSentence');
-  const sentenceIndex = new URLSearchParams(location.search).get('sentenceIndex');
-
   const [postText, setPostText] = useState("");
 
   useEffect(() => {

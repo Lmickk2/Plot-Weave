@@ -11,6 +11,7 @@ export const QUERY_USER = gql`
       twt
       fb
       ig
+      profilePicture
       posts {
         _id
         postTitle
@@ -37,8 +38,8 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_RANDOM_USERS = gql`
-  query randomUsers($limit: Int!) {
-    users(limit: $limit) {
+  query randomUsers($username: String!) {
+    users(username: $username) {
       _id
       username
       bio

@@ -25,7 +25,7 @@ function Home() {
       </div>
       <div className="section-2">
         <h1>How to use Plot Weave</h1>
-        <p>Learn about how to best utilize Plot Weave to get your work discovered by thousands of daily users!</p>
+        <p className="how-p">Learn about how to best utilize Plot Weave to get your work discovered by thousands of daily users!</p>
         <div className="how-to">
           <div className="how-section">
             <div className="card-side">

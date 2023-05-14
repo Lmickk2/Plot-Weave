@@ -218,7 +218,7 @@ const Profile = () => {
           <div className="profile-info">
             <div className="prof-head">
               <div className="user-identity">
-                <img src={betaTester} className="profile-img" alt="" />
+                <img src={user.profilePicture} className="profile-img" alt="" />
                 <div className="user-details">
                   <p className="username">
                     <b>{userParam ? `${user.username}` : `${user.username}`}</b>
