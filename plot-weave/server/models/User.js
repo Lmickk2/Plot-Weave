@@ -46,14 +46,7 @@ const userSchema = new Schema({
     }
   ],
   profilePicture: {
-    data: {
-      type: Buffer,
-      default: defaultProfilePicture,
-    },
-    contentType: {
       type: String,
-      default: './client/src/images/beta.png',
-    },
   },
   bio: {
     type: String,

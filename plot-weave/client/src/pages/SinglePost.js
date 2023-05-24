@@ -71,7 +71,6 @@ const SinglePost = () => {
     const precedingSentences = sentences.slice(0, selectedIndex + 1);
     const postText = precedingSentences
       .join(". ")
-      .toLowerCase()
       .replace(/\s+/g, "-");
     const selectedSentence = encodeURIComponent(
       precedingSentences[selectedIndex]
@@ -79,6 +78,7 @@ const SinglePost = () => {
     const sentenceIndex = encodeURIComponent(selectedIndex);
     return `/weave?postText=${postText}&selectedSentence=${selectedSentence}&sentenceIndex=${sentenceIndex}`;
   };
+  
 
   const weaveSentence = (sentenceIndex, sentenceText) => {
     const sentences = post.postText.split(". ");

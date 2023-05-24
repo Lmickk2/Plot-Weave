@@ -274,7 +274,7 @@ footer {
 
 .weave {
     height: 25em;
-    margin-top: -10% !important;
+    margin-top: -7% !important;
     margin-left: 15%;
 }
 
@@ -411,7 +411,7 @@ footer {
   text-align: left;
   margin: auto;
   display: block;
-  width: 50%;
+  width: 70%;
   margin-top: 5em;
 }
 
@@ -551,6 +551,11 @@ footer {
   .success a {
     text-decoration: underline;
     font-size: 22px !important;
+  }
+
+  .genre-select {
+    width: 7em;
+    margin: auto;
   }
 
 /* SINGLE POST */
@@ -717,6 +722,7 @@ footer {
 
 .user-options {
   display: flex;
+  text-align: left;
 }
 
 .followers {
@@ -764,7 +770,8 @@ footer {
 }
 
 .enter-cred {
-  margin-top: 2rem;
+  padding-top: 0.4em;
+  margin-top: 0.7em;
 }
 
 .cred-input {
@@ -848,6 +855,15 @@ footer {
 }
 
 .su-btn {
+  text-decoration: underline;
+}
+
+.terms {
+  font-family: 'PT Sans', sans-serif !important;
+  font-size: 16px;
+}
+
+.emph {
   text-decoration: underline;
 }
 

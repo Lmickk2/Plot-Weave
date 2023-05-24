@@ -6,12 +6,12 @@ function Footer() {
   return (
     <footer>
         <ul className="foot-elements">
-            <li>Terms</li>
-            <li>Privacy</li>
-            <li>Accessibility</li>
-            <li>Help</li>
-            <li>Contact</li>
-            <li>Languages</li>
+            <Link to="/terms"><li>Terms</li></Link>
+            <Link to="/"><li>Privacy</li></Link>
+            <Link to="/"><li>Accessibility</li></Link>
+            <Link to="/"><li>Help</li></Link>
+            <Link to="/"><li>Contact</li></Link>
+            <Link to="/"><li>Languages</li></Link>
         </ul>
     </footer>
   );

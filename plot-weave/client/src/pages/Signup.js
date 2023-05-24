@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Helmet } from "react-helmet";
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
+import { Link } from 'react-router-dom';
+
 
 import Auth from '../utils/auth';
 
@@ -12,6 +14,12 @@ const Signup = () => {
     password: '',
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [agreeTerms, setAgreeTerms] = useState(false);
+
+  const handleCheckboxChange = (event) => {
+    setAgreeTerms(event.target.checked);
+  };
+  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -80,7 +88,17 @@ const Signup = () => {
             onChange={handleChange}
           />
         </div>
-          <button type="submit" className="long-btn top">Submit</button>
+      <label className="terms" htmlFor="terms">
+      <input
+        id="terms"
+        type="checkbox"
+        checked={agreeTerms}
+        onChange={handleCheckboxChange}
+      />
+      I have read and agree to the <span className="emph"><Link to="/terms" target="_blank">terms</Link></span>
+    </label>
+    <br/>
+        <button type="submit" className="long-btn top" disabled={!agreeTerms}>Submit</button>
       </form>
     </div>
     </div>

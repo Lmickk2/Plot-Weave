@@ -4,6 +4,19 @@ const typeDefs = gql`
 
 scalar Upload
 
+enum Genre {
+  ACTION
+  ADVENTURE
+  COMEDY
+  DRAMA
+  FANTASY
+  HORROR
+  MYSTERY
+  ROMANCE
+  SCIENCE_FICTION
+  THRILLER
+}
+
   type User {
     _id: ID
     username: String
@@ -30,6 +43,7 @@ scalar Upload
     comments: [Comment]!
     user: [User]!
     likes: Int!
+    genre: Genre
   }
 
   type Comment {
@@ -66,7 +80,7 @@ scalar Upload
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addPost(postText: String!, postTitle:String!): OriginalPost
+    addPost(postText: String!, postTitle:String!, genre: String!): OriginalPost
     addComment(postId: ID!, commentText: String!): OriginalPost
     removePost(postId: ID!): OriginalPost
     removeComment(postId: ID!, commentId: ID!): OriginalPost

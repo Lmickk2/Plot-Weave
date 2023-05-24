@@ -38,12 +38,11 @@ const SingleWeave = () => {
         <div className="author-section">
           <img src={profilepic} />
           <p>{weave.weaveAuthor}</p>
+          <span style={{ fontSize: "1rem" }}>{weave.createdAt}</span>
         </div>
         <div className="my-3">
           <h3 className="created-by right">
             {weave.postTitle}
-            <br />
-            <span style={{ fontSize: "1rem" }}>{weave.createdAt}</span>
           </h3>
           <div className="post-container">
             <p>{weave.postText}</p>

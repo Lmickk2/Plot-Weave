@@ -3,7 +3,9 @@ require("dotenv").config();
 const { AuthenticationError } = require("apollo-server-express");
 const { User, OriginalPost, Weave } = require("../models");
 const { signToken } = require("../utils/auth");
+const { createWriteStream } = require('fs');
 const AWS = require('aws-sdk');
+const { v4: uuidv4 } = require('uuid');
 
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -20,8 +22,11 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate("posts").populate("weaves");
     },
-    posts: async (parent, { username }) => {
+    posts: async (parent, { username, genre }) => {
       const params = username ? { username } : {};
+      if (genre) {
+        params.genre = genre;
+      }
       return OriginalPost.find(params).sort({ createdAt: -1 });
     },
     post: async (parent, { postId }) => {
@@ -79,24 +84,26 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     
-    addPost: async (parent, { postTitle, postText}, context) => {
-      console.log(postTitle,postText)
+    addPost: async (parent, { postTitle, postText, genre }, context) => {
+      console.log(postTitle, postText);
       if (context.user) {
         const post = await OriginalPost.create({
           postTitle,
           postText,
+          genre,
           postAuthor: context.user.username,
         });
-
+  
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { posts: post._id } }
         );
-
+  
         return post;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+
     addWeave: async (parent, { postTitle, postText}, context) => {
       console.log(postTitle,postText)
       if (context.user) {

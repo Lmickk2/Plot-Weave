@@ -48,16 +48,17 @@ export const QUERY_RANDOM_USERS = gql`
 `;
 
 export const QUERY_POSTS = gql`
-  query getPosts {
-    posts {
-      _id
-      postTitle
-      postText
-      postAuthor
-      createdAt
-      likes
-    }
+query getPosts {
+  posts {
+    _id
+    postTitle
+    postText
+    postAuthor
+    createdAt
+    likes
+    genre
   }
+}
 `;
 
 export const QUERY_USER_POSTS = gql`
@@ -68,6 +69,7 @@ export const QUERY_USER_POSTS = gql`
       postText
       postAuthor
       createdAt
+      genre
     }
   }
 `;
@@ -105,6 +107,7 @@ export const QUERY_SINGLE_POST = gql`
       postAuthor
       createdAt
       likes
+      genre
       comments {
         _id
         commentText

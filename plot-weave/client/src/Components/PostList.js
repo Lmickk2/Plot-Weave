@@ -24,7 +24,7 @@ const PostList = ({ title = "All Posts", showUsername }) => {
                       <p>
                         <Link to={`/profile/${post.postAuthor}`}>
                           {post.postAuthor}
-                        </Link> • {post.createdAt}
+                        </Link> • {post.genre} • {post.createdAt}
                       </p>
                     </div>
                     <h3>
