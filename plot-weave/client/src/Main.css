@@ -110,6 +110,7 @@ html, body {
 
 .nav-link {
   cursor: pointer !important;
+  z-index: 1;
 }
 
 .navbar-nav {
@@ -156,6 +157,7 @@ a:hover {
 
 .nav-item {
   margin-left: 0.9em;
+  z-index: 1 !important;
 }
 
 /* FOOTER */
@@ -193,12 +195,19 @@ footer {
   .intro {
     margin: auto !important;
     width: 90% !important;
+    position: inherit !important;
   }
   .intro h1 {
     font-size: 52px !important;
   }
   .demo {
     width: 100% !important;
+  }
+  .phone-demo {
+    display: none !important;
+  }
+  .circle {
+    display: none !important;
   }
   .start {
     z-index: 1;
@@ -248,6 +257,9 @@ footer {
   .right {
     margin-right: inherit !important;
   }
+  .one-div {
+    display: none !important;
+  }
 }
 
 .hero {
@@ -260,12 +272,56 @@ footer {
 
 .intro {
     width: 40%;
+    position: absolute;
     margin-left: 5%;
 }
 
 .intro h1 {
-    font-size: 68px;
+    font-size: 64px;
     font-family: 'Libre Baskerville', serif;
+}
+
+.ex-text {
+  font-size: 12px;
+}
+
+.circle {
+  width: 25em;
+  height: 25em;
+  border-radius: 100%;
+  margin-left: -4em;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.281) 0%, rgba(131, 244, 193, 0.322) 0%, rgba(7, 233, 131, 0.158) 100%);
+  box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.507);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.one-div {
+  width: 45em;
+  height: 45em;
+  border-radius: 100%;
+  margin-top: -20em;
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(131,244,194,1) 0%, rgba(7,233,133,1) 100%);
+  box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.507);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 33em;
+}
+
+.morph {
+  text-shadow: -2px 1px 1px rgba(0, 0, 0, 0.144);
+}
+
+.phone-demo {
+  height: 30em;
+  width: 15em;
+  position: absolute;
+  top: 10.5em;
 }
 
 .demo {
@@ -307,6 +363,7 @@ footer {
 }
 
 .section-2 {
+    margin-top: 5%;
     margin-bottom: 10%;
     font-family: 'PT Sans', sans-serif;
 }
@@ -427,6 +484,31 @@ footer {
 
 /* CREATE STORY */
 
+@media screen and (max-width: 768px) {
+  .post-input {
+    width: 90% !important;
+  }
+  .title-input {
+    width: 90% !important;
+  }
+  .weaveBtn {
+    padding: 0.4em 0.6em !important;
+    margin: auto;
+    margin-top: 1.5em !important;
+    margin-bottom: 0.5em;
+    border: 3px solid #4caf50 !important;
+    border-radius: 0.8em;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 1s;
+    position: relative;
+    overflow: hidden;
+    background: #4caf50 !important;
+    color: white !important;
+    box-shadow: none !important;
+  }
+}
+
 .post-form {
   margin: auto;
   margin-top: 5%;
@@ -461,6 +543,7 @@ footer {
     padding: 0.7em 0.9em;
     margin: auto;
     margin-top: 2em;
+    margin-bottom: 1.5em;
     border: 3px dashed #4caf50;
     border-radius: 0.8em;
     font-size: 16px;

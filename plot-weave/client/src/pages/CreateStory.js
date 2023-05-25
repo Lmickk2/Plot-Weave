@@ -99,7 +99,7 @@ const CreateStory = () => {
                     onChange={handleChange}
                   ></textarea>
                 </div>
-
+              <div className="create-btns">
                 <div className="genre-select">
                   <label htmlFor="genre">Genre:</label>
                   <select
@@ -124,7 +124,7 @@ const CreateStory = () => {
                 <button className="weaveBtn" type="submit">
                   Create Post !
                 </button>
-
+            </div>
                 {error && (
                   <div className="col-12 my-3 bg-danger text-white p-3">
                     {error.message}
