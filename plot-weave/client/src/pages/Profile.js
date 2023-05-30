@@ -76,6 +76,12 @@ const Profile = () => {
       modal.classList.toggle("show");
     }
   };
+
+  // const handleProfilePictureChange = (event) => {
+  //   const file = event.target.files[0];
+  //   setProfilePicture(URL.createObjectURL(file));
+  // };
+
   const handleBioChange = (event) => {
     setBio(event.target.value);
   };
@@ -146,8 +152,7 @@ const Profile = () => {
                   followers: newFollower
                     ? [...currentFollowers, newFollower]
                     : [...currentFollowers],
-                    
-                },        
+                },
               },
             });
             setIsFollowed(true);
@@ -203,13 +208,11 @@ const Profile = () => {
   };
 
   if (loading) {
-    return (
-<div class="loader"></div>
-    );
+    return <div class="loader"></div>;
   }
 
   return (
-    <div className="prof-page appear">
+    <div className="prof-page">
       <Helmet>
         <title>Plot Weave | Profile</title>
       </Helmet>
@@ -218,7 +221,7 @@ const Profile = () => {
           <div className="profile-info">
             <div className="prof-head">
               <div className="user-identity">
-                <img src={user.profilePicture} className="profile-img" alt="" />
+                <img src={betaTester} className="profile-img" alt="" />
                 <div className="user-details">
                   <p className="username">
                     <b>{userParam ? `${user.username}` : `${user.username}`}</b>
@@ -241,26 +244,30 @@ const Profile = () => {
                     {user.weaves.length}
                   </p>
                 </div>
-                {Auth.loggedIn() && user.username === Auth.getProfile().data.username && (
-                <div className="edit-profile">
-                  <span
-                    className="pencil-icon"
-                    onClick={() => setShowEditProfile(!showEditProfile)}
-                  >
-                    Edit Profile &#9998;
-                  </span>
-                  {showEditProfile && (
-                    <div className="modal">
-                      <form onSubmit={handleProfileUpdate}>
-                        <button className="exit" onClick={toggleEditProfile}>
-                          Exit
-                        </button>
-                        <textarea
-                          placeholder="Tell us about yourself"
-                          value={bio}
-                          onChange={handleBioChange}
-                        />
-                        <input
+                {Auth.loggedIn() &&
+                  user.username === Auth.getProfile().data.username && (
+                    <div className="edit-profile">
+                      <span
+                        className="pencil-icon"
+                        onClick={() => setShowEditProfile(!showEditProfile)}
+                      >
+                        Edit Profile &#9998;
+                      </span>
+                      {showEditProfile && (
+                        <div className="modal">
+                          <form onSubmit={handleProfileUpdate}>
+                            <button
+                              className="exit"
+                              onClick={toggleEditProfile}
+                            >
+                              Exit
+                            </button>
+                            <textarea
+                              placeholder="Tell us about yourself"
+                              value={bio}
+                              onChange={handleBioChange}
+                            />
+                            {/* <input
                           type="file"
                           accept=".jpg,.jpeg,.png"
                           onChange={handleProfilePictureChange}
@@ -296,19 +303,19 @@ const Profile = () => {
                           name="yt"
                           value={yt}
                           onChange={(event) => setYt(event.target.value)}
-                        />
-                        <button type="submit">Update Profile</button>
-                      </form>
-                      <button
-                        className="close-modal"
-                        onClick={toggleEditProfile}
-                      >
-                        &times;
-                      </button>
+                        /> */}
+                            <button type="submit">Update Profile</button>
+                          </form>
+                          <button
+                            className="close-modal"
+                            onClick={toggleEditProfile}
+                          >
+                            &times;
+                          </button>
+                        </div>
+                      )}
                     </div>
                   )}
-                </div>
-                )}
                 <div className="social-media">
                   <a href="https://www.facebook.com/">
                     <FontAwesomeIcon icon={faFacebook} id="fb" />
@@ -360,12 +367,15 @@ const Profile = () => {
             </div>
             <div className="split-section">
               <div className="about-me">
-                {user.bio === undefined ? (
+                {user.bio === undefined ||
+                user.bio === null ||
+                user.bio === "" ? (
                   <p>No bio yet.</p>
                 ) : (
                   <p>{user.bio}</p>
                 )}
               </div>
+
               {showWeaves ? (
                 <WeaveList />
               ) : (

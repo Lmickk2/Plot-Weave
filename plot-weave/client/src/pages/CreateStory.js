@@ -65,7 +65,7 @@ const CreateStory = () => {
   };
 
   return (
-    <div className="appear top-pad">
+    <div className="top-pad">
       <Helmet>
         <title>Plot Weave | Your Story</title>
       </Helmet>
@@ -114,6 +114,7 @@ const CreateStory = () => {
                     <option value="FANTASY">Fantasy</option>
                     <option value="HORROR">Horror</option>
                     <option value="MYSTERY">Mystery</option>
+                    <option value="OTHER">Other</option>
                     <option value="ROMANCE">Romance</option>
                     <option value="SCIENCE_FICTION">Sci-Fi</option>
                     <option value="THRILLER">Thriller</option>

@@ -31,7 +31,7 @@ const SingleWeave = () => {
 
   return (
     <div className="post-section">
-      <div className="appear single-post">
+      <div className="single-post">
         <Helmet>
           <title>Plot Weave | {weave.postTitle}</title>
         </Helmet>

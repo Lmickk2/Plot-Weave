@@ -12,27 +12,25 @@ enum Genre {
   FANTASY
   HORROR
   MYSTERY
+  OTHER
   ROMANCE
   SCIENCE_FICTION
   THRILLER
 }
 
-  type User {
-    _id: ID
-    username: String
-    email: String
-    password: String
-    profilePicture: Upload
-    bio: String
-    yt: String
-    ig: String
-    twt: String
-    fb: String
-    posts: [OriginalPost]!
-    weaves: [Weave]!
-    followers: [User!]
-    following: [User!]
-  }
+type User {
+  _id: ID
+  username: String
+  email: String
+  password: String
+  profilePicture: Upload
+  bio: String
+  posts: [OriginalPost]!
+  weaves: [Weave]!
+  followers: [User!]
+  following: [User!]
+}
+
 
   type OriginalPost {
     _id: ID
@@ -85,7 +83,7 @@ enum Genre {
     removePost(postId: ID!): OriginalPost
     removeComment(postId: ID!, commentId: ID!): OriginalPost
     addWeave(postText: String!, postTitle:String!): Weave
-    updateUser(profilePicture: Upload, bio: String, yt: String, twt: String, fb: String, ig: String): User
+    updateUser(profilePicture: Upload, bio: String): User
     followUser(followeeId: ID!): User!
     unfollowUser(followeeId: ID!): User!
     likePost(postId: ID!): OriginalPost!

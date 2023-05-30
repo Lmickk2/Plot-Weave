@@ -7,10 +7,6 @@ export const QUERY_USER = gql`
       username
       email
       bio
-      yt
-      twt
-      fb
-      ig
       profilePicture
       posts {
         _id
@@ -38,13 +34,15 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_RANDOM_USERS = gql`
-  query randomUsers($username: String!) {
-    users(username: $username) {
-      _id
-      username
-      bio
-    }
+query getUsers {
+  users {
+    _id
+    username
+    email
+    bio
+    profilePicture
   }
+}
 `;
 
 export const QUERY_POSTS = gql`
@@ -144,10 +142,6 @@ export const QUERY_ME = gql`
       username
       email
       bio
-      yt
-      twt
-      fb
-      ig
       profilePicture
       posts {
         _id

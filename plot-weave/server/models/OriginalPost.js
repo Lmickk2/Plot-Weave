@@ -55,7 +55,7 @@ const postSchema = new Schema({
   ],
   genre: {
     type: String,
-    enum: ['ACTION', 'ADVENTURE', 'COMEDY', 'DRAMA', 'FANTASY', 'HORROR', 'MYSTERY', 'ROMANCE', 'SCIENCE_FICTION', 'THRILLER'],
+    enum: ['ACTION', 'ADVENTURE', 'COMEDY', 'DRAMA', 'FANTASY', 'HORROR', 'MYSTERY', 'OTHER', 'ROMANCE', 'SCIENCE_FICTION', 'THRILLER'],
     default: null,
   },
 });

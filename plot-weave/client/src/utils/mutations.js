@@ -26,20 +26,17 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
 `;
 
 export const UPDATE_USER = gql`
-mutation updateUser($bio: String!, $profilePicture: Upload, $yt: String, $ig: String, $twt: String, $fb: String) {
-  updateUser(bio: $bio, profilePicture: $profilePicture, yt: $yt, fb: $fb, twt: $twt, ig: $ig) {
-    _id
-    username
-    email
-    profilePicture
-    bio
-    yt
-    twt
-    fb
-    ig
+  mutation updateUser($bio: String!, $profilePicture: Upload) {
+    updateUser(bio: $bio, profilePicture: $profilePicture) {
+      _id
+      username
+      email
+      profilePicture
+      bio
+    }
   }
-}
 `;
+
 
 export const ADD_POST = gql`
 mutation addPost($postText: String!, $postTitle: String!, $genre: String!) {

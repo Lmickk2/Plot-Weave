@@ -1,7 +1,5 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-const fs = require('fs');
-const defaultProfilePicture = fs.readFileSync('../client/src/images/profile.png');
 
 const userSchema = new Schema({
   username: {
@@ -47,22 +45,11 @@ const userSchema = new Schema({
   ],
   profilePicture: {
       type: String,
+      default: null,
   },
   bio: {
     type: String,
     maxlength: 500,
-  },
-  yt: {
-    type: String,
-  },
-  fb: {
-    type: String,
-  },
-  twt: {
-    type: String,
-  },
-  ig: {
-    type: String,
   },
 });
 

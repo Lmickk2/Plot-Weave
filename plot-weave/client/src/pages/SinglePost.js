@@ -123,7 +123,7 @@ const SinglePost = () => {
 
   return (
     <div className="post-section">
-      <div className="appear single-post">
+      <div className="single-post">
         <Helmet>
           <title>Plot Weave | {post.postTitle}</title>
         </Helmet>

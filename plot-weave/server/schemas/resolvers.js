@@ -3,16 +3,12 @@ require("dotenv").config();
 const { AuthenticationError } = require("apollo-server-express");
 const { User, OriginalPost, Weave } = require("../models");
 const { signToken } = require("../utils/auth");
-const { createWriteStream } = require('fs');
-const AWS = require('aws-sdk');
+const path = require('path')
+const { createWriteStream, createReadStream } = require('fs');
 const { v4: uuidv4 } = require('uuid');
+const AWS = require('aws-sdk');
+const cloudinary = require('cloudinary').v2;
 
-const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-});
-
-const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
 const resolvers = {
   Query: {
@@ -70,12 +66,11 @@ const resolvers = {
 
       return { token, user };
     },
-
-    updateUser: async (parent, { profilePicture, bio, yt, fb, twt, ig }, context) => {
+    updateUser: async (parent, { profilePicture, bio}, context) => {
       if (context.user) {
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { profilePicture, bio, yt, ig, fb, twt },
+          { profilePicture, bio},
           { new: true }
         ).populate("posts");
   
@@ -83,7 +78,6 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    
     addPost: async (parent, { postTitle, postText, genre }, context) => {
       console.log(postTitle, postText);
       if (context.user) {

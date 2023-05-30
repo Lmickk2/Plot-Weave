@@ -80,6 +80,30 @@ html, body {
   left: calc(50% - 1.25em);
  }
 
+ /* APPEAR */
+
+ .appear {
+  animation: appear 2s ease-in;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* HEADER */
 
 @import "~bootstrap/dist/css/bootstrap.css";
@@ -305,7 +329,7 @@ footer {
   border-radius: 100%;
   margin-top: -20em;
   background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(131,244,194,1) 0%, rgba(7,233,133,1) 100%);
-  box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.507);
+  box-shadow: inset 4px -1px 6px rgba(0, 0, 0, 0.322);
   position: relative;
   display: flex;
   align-items: center;
@@ -849,7 +873,7 @@ footer {
   font-weight: bold;
   font-size: 48px;
   color: #59b85c;
-  text-shadow: -2px 0px 0.5px #49974c, -3px 0.5px 0.8px #3b7c3d;
+  text-shadow: -2px 0px 0.5px #49974c, -3px 0px 0.8px #3b7c3d42;
 }
 
 .enter-cred {
@@ -994,11 +1018,11 @@ footer {
   display: block;
   margin: auto;
   justify-content: space-between;
-  margin-top: 5%;
+  margin-top: 1%;
 }
 
 .post-info {
-  width: 85%;
+  width: 65%;
 }
 
 .post-list h3 {

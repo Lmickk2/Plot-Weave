@@ -16,20 +16,22 @@ function AllWeaves() {
             {data &&
               data.weaves &&
               data.weaves.map((weave) => (
-                <div key={weave._id}>
+                <div key={weave._id} className="post-container">
                   <div className="post-info">
                     <div className="author-list">
                       <img src={profilepic} />
                       <p>
                         <Link to={`/profile/${weave.weaveAuthor}`}>
                           {weave.weaveAuthor}
-                        </Link>
+                        </Link> • {weave.createdAt}
                       </p>
                     </div>
                     <h3>
                       <Link to={`/weave/${weave._id}`}>{weave.postTitle}</Link>
                     </h3>
-                    <p className="date">{weave.createdAt}</p>
+                    <p className="preview-text">
+                      {weave.postText.slice(0, 200) + "..."}
+                    </p>
                   </div>
                 </div>
               ))}

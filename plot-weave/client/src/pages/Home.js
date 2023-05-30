@@ -17,7 +17,7 @@ function Home() {
   return (
     <>
       <div className="hero">
-      <div className="circle"></div>
+      <div className="circle appear"></div>
         <div className="intro">
           <h1><span className="morph">Crea</span>te The Ending <span className="morph">You H</span>oped For.</h1>
           <p>
@@ -27,7 +27,7 @@ function Home() {
             <button className="start"><Link to="/community">Start Reading</Link></button>
         </div>
         <div className="demo">
-        <div className="one-div"></div>
+        <div className="one-div appear"></div>
         <img src={phone} className="phone-demo"></img>
         </div>
       </div>
@@ -67,8 +67,7 @@ function Home() {
               <div className="tut-card">
               <h3>Weave</h3>
               <p>
-                Found an amazing story but don't quite like the ending? Make it
-                your own with Weave. Choose any sentence to break off of, and
+                Found an amazing story but don't quite like the ending? Choose any sentence to break off of, and
                 create your own story from there.
               </p>
               </div>

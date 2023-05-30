@@ -46,7 +46,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="cool-bg appear">
+    <div className="cool-bg">
       <Helmet>
           <title>Plot Weave | Signup</title>
       </Helmet>
