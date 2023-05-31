@@ -190,7 +190,12 @@ a:hover {
 
 /* FOOTER */
 
-/* CSS */
+@media screen and (max-width:768px) {
+  .foot-elements li {
+    font-size: 12px !important;
+  }
+}
+
 footer {
   display: block;
   text-align: center;
@@ -215,18 +220,119 @@ footer {
 
 /* HOME */
 
-@media screen and (max-width:768px) {
+@media screen and (min-width:1001px) and (max-width:1200px) {
+  .intro {
+    margin: auto !important;
+    width: 50% !important;
+  }
+  .intro h1 {
+    font-size: 58px !important;
+    margin-top: 1em;
+    text-shadow: -2px 1px 1px rgba(0, 0, 0, 0.144);
+  }
+}
+
+@media screen and (min-width:769px) and (max-width:1000px) {
   .hero {
-    padding-top: 40% !important;
+    padding-top: 20% !important;
     display: inherit !important;
+    overflow: hidden !important;
   }
   .intro {
     margin: auto !important;
-    width: 90% !important;
+    width: 60% !important;
     position: inherit !important;
   }
   .intro h1 {
-    font-size: 52px !important;
+    font-size: 62px !important;
+    text-shadow: -2px 1px 1px rgba(0, 0, 0, 0.144);
+  }
+  .demo {
+    width: 100% !important;
+  }
+  .phone-demo {
+    display: none !important;
+  }
+  .circle {
+    width: 17em !important;
+    height: 17em !important;
+    position: absolute !important;
+    margin-left: -7em !important;
+  }
+  .start {
+    z-index: 1;
+    position: relative;
+  }
+  .weave {
+    display: none!important;
+    /* display: block !important;
+    height: 20em !important;
+    margin: auto !important;
+    padding-top: 5em !important; */
+  }
+  .section-2 {
+    padding-bottom: 5em;
+    margin: auto !important;
+  }
+  .section-2 h1 {
+    text-align: center !important;
+    margin: inherit !important;
+    padding-bottom: 0.2em;
+    border-bottom: 0.5px solid grey;
+  }
+  .how-section {
+    display: block !important;
+    width: 100% !important;
+  }
+  .how-p {
+    width: 90%;
+    margin: auto;
+  }
+  .how-to {
+    display: block !important;
+  }
+  .post-list {
+    margin-top: inherit !important;
+  }
+  .trending-prof {
+    width: 4rem !important;
+    height: 4rem !important;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.459) !important;
+  }
+  .navbar-collapse {
+    z-index: 1;
+    position: relative;
+    box-shadow: 0px 5px 5px #0000001a;
+  }
+  .right {
+    margin-right: inherit !important;
+  }
+  .one-div {
+    margin-top: -20% !important;
+    width: 24em !important;
+    height: 24em !important;
+    margin-left: 47em !important;
+    opacity: 0.8;
+  }
+  .morph {
+    text-shadow: inherit !important;
+  }
+}
+
+@media screen and (min-width:551px) and (max-width:768px) {
+  .hero {
+    padding-top: 25% !important;
+    display: inherit !important;
+    overflow: hidden !important;
+  }
+  .intro {
+    margin: auto !important;
+    width: 80% !important;
+    position: inherit !important;
+  }
+  .intro h1 {
+    font-size: 62px !important;
+    text-shadow: -2px 1px 1px rgba(0, 0, 0, 0.144);
   }
   .demo {
     width: 100% !important;
@@ -288,6 +394,89 @@ footer {
   .one-div {
     display: none !important;
   }
+  .morph {
+    text-shadow: inherit !important;
+  }
+}
+
+@media screen and (max-width:550px) {
+  .hero {
+    padding-top: 40% !important;
+    display: inherit !important;
+    overflow: hidden !important;
+  }
+  .intro {
+    margin: auto !important;
+    width: 90% !important;
+    position: inherit !important;
+  }
+  .intro h1 {
+    font-size: 52px !important;
+    text-shadow: -2px 1px 1px rgba(0, 0, 0, 0.144);
+  }
+  .demo {
+    width: 100% !important;
+  }
+  .phone-demo {
+    display: none !important;
+  }
+  .circle {
+    display: none !important;
+  }
+  .start {
+    z-index: 1;
+    position: relative;
+  }
+  .weave {
+    display: none!important;
+    /* display: block !important;
+    height: 20em !important;
+    margin: auto !important;
+    padding-top: 5em !important; */
+  }
+  .section-2 {
+    padding-bottom: 5em;
+    margin: auto !important;
+  }
+  .section-2 h1 {
+    text-align: center !important;
+    margin: inherit !important;
+    padding-bottom: 0.2em;
+    border-bottom: 0.5px solid grey;
+  }
+  .how-section {
+    display: block !important;
+    width: 100% !important;
+  }
+  .how-p {
+    width: 90%;
+    margin: auto;
+  }
+  .how-to {
+    display: block !important;
+  }
+  .post-list {
+    margin-top: inherit !important;
+  }
+  .trending-prof {
+    width: 4rem !important;
+    height: 4rem !important;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.459) !important;
+  }
+  .navbar-collapse {
+    z-index: 1;
+    position: relative;
+    box-shadow: 0px 5px 5px #0000001a;
+  }
+  .right {
+    margin-right: inherit !important;
+  }
+  .one-div {
+    display: none !important;
+  }
+  .morph {
+    text-shadow: inherit !important;
+  }
 }
 
 @media screen and (max-width:768px) {
@@ -308,6 +497,12 @@ footer {
     color: #fff;
     border: none;
     cursor: pointer;
+  }
+  .modal-content {
+    position: fixed;
+    left: 0;
+    width: fit-content !important;
+    height: fit-content !important;
   }
 }
 
