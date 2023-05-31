@@ -55,11 +55,11 @@ const CreateStory = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === "postText" && value.length <= 3000) {
+    if (name === "postText" && value.length <= 15000) {
       setPostText(value);
       setCharacterCount(value.length);
     }
-    if (name === "postTitle" && value.length <= 80) {
+    if (name === "postTitle" && value.length <= 200) {
       setPostTitle(value);
     }
   };

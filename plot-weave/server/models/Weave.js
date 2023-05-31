@@ -14,7 +14,7 @@ const weaveSchema = new Schema({
     type: String,
     required: 'You need some text!',
     minlength: 1,
-    maxlength: 3000,
+    maxlength: 15000,
     trim: true,
   },
   weaveAuthor: {

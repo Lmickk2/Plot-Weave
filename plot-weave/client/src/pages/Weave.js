@@ -3,6 +3,8 @@ import { useMutation } from "@apollo/client";
 import { useLocation } from "react-router-dom";
 import { ADD_WEAVE } from "../utils/mutations";
 import Auth from '../utils/auth';
+import NotAuthorized from "../Components/NotAuthorized";
+import { Link } from "react-router-dom";
 
 const Weave = () => {
   const { search } = useLocation();
@@ -25,6 +27,7 @@ const Weave = () => {
   
 
   const [postTitle, setPostTitle] = useState("");
+  const [isPublished, setIsPublished] = useState(false);
 
   const [addWeave, { error }] = useMutation(ADD_WEAVE);
 
@@ -44,22 +47,26 @@ const Weave = () => {
     } catch (err) {
       console.error(err);
     }
+    setIsPublished(true);
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === "postText" && value.length <= 3000) {
+    if (name === "postText" && value.length <= 15000) {
       setPostText(value);
     }
 
-    if (name === "postTitle" && value.length <= 80) {
+    if (name === "postTitle" && value.length <= 200) {
       setPostTitle(value);
     }
   };
 
   return (
     <div>
+      {Auth.loggedIn() ? (
+        <>
+      {!isPublished ? (
       <div className="post-form">
         <form
           id="spacing"
@@ -92,6 +99,16 @@ const Weave = () => {
           </button>
         </form>
       </div>
+      ) : (
+        <div className="success">
+          <h2>Story Published!</h2>
+          <Link to="/me">View Post</Link>
+        </div>
+      )}
+        </>
+      ) : (
+        <NotAuthorized />
+      )}
     </div>
   );
 };

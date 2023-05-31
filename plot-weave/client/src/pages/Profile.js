@@ -377,7 +377,9 @@ const Profile = () => {
               </div>
 
               {showWeaves ? (
+                <div className="user-activity">
                 <WeaveList />
+                </div>
               ) : (
                 <div className="user-activity">
                   <h3>{user?.username}'s Posts</h3>

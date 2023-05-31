@@ -50,7 +50,6 @@ const { username: userParam } = useParams();
   }
   return (
     <div>
-      <div className="user-activity">
         <h3>{user?.username}'s Weaves</h3>
         <div className="user-posts">
           {user?.weaves?.length === 0 ? (
@@ -79,7 +78,6 @@ const { username: userParam } = useParams();
             </button>
           )}
         </div>
-      </div>
     </div>
   );
   
