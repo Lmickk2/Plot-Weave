@@ -51,6 +51,7 @@ const Signup = () => {
           <title>Plot Weave | Signup</title>
       </Helmet>
     <div className="large-container-center">
+    <div className="circle appear abs"></div>
     <div className="login-cont">
 
       <h2>Signup</h2>
@@ -100,6 +101,7 @@ const Signup = () => {
     <br/>
         <button type="submit" className="long-btn top" disabled={!agreeTerms}>Submit</button>
       </form>
+      <div className="one-div appear smallCirc"></div>
     </div>
     </div>
     </div>

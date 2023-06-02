@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
   position: relative;
 }
@@ -10,9 +11,10 @@ html, body {
   width: 4.5em;
   height: 4.5em;
   transform: rotate(165deg);
- }
- 
- .loader:before, .loader:after {
+}
+
+.loader:before,
+.loader:after {
   content: "";
   position: absolute;
   top: 50%;
@@ -22,67 +24,75 @@ html, body {
   height: 0.5em;
   border-radius: 0.25em;
   transform: translate(-50%, -50%);
- }
- 
- .loader:before {
+}
+
+.loader:before {
   animation: before8 2s infinite;
- }
- 
- .loader:after {
+}
+
+.loader:after {
   animation: after6 2s infinite;
- }
- 
- @keyframes before8 {
+}
+
+@keyframes before8 {
   0% {
-   width: 0.5em;
-   box-shadow: 1em -0.5em rgba(20, 225, 54, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+    width: 0.5em;
+    box-shadow: 1em -0.5em rgba(20, 225, 54, 0.75),
+      -1em 0.5em rgba(111, 202, 220, 0.75);
   }
- 
+
   35% {
-   width: 2.5em;
-   box-shadow: 0 -0.5em rgba(20, 225, 54, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+    width: 2.5em;
+    box-shadow: 0 -0.5em rgba(20, 225, 54, 0.75),
+      0 0.5em rgba(111, 202, 220, 0.75);
   }
- 
+
   70% {
-   width: 0.5em;
-   box-shadow: -1em -0.5em rgba(20, 225, 54, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+    width: 0.5em;
+    box-shadow: -1em -0.5em rgba(20, 225, 54, 0.75),
+      1em 0.5em rgba(111, 202, 220, 0.75);
   }
- 
+
   100% {
-   box-shadow: 1em -0.5em rgba(20, 225, 54, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+    box-shadow: 1em -0.5em rgba(20, 225, 54, 0.75),
+      -1em 0.5em rgba(111, 202, 220, 0.75);
   }
- }
- 
- @keyframes after6 {
+}
+
+@keyframes after6 {
   0% {
-   height: 0.5em;
-   box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+    height: 0.5em;
+    box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75),
+      -0.5em -1em rgba(233, 169, 32, 0.75);
   }
- 
+
   35% {
-   height: 2.5em;
-   box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+    height: 2.5em;
+    box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75),
+      -0.5em 0 rgba(233, 169, 32, 0.75);
   }
- 
+
   70% {
-   height: 0.5em;
-   box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+    height: 0.5em;
+    box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75),
+      -0.5em 1em rgba(233, 169, 32, 0.75);
   }
- 
+
   100% {
-   box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+    box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75),
+      -0.5em -1em rgba(233, 169, 32, 0.75);
   }
- }
- 
- .loader {
+}
+
+.loader {
   position: absolute;
   top: calc(50% - 1.25em);
   left: calc(50% - 1.25em);
- }
+}
 
- /* APPEAR */
+/* APPEAR */
 
- .appear {
+.appear {
   animation: appear 2s ease-in;
 }
 
@@ -108,7 +118,9 @@ html, body {
 
 @import "~bootstrap/dist/css/bootstrap.css";
 
-.fa, .far, .fas {
+.fa,
+.far,
+.fas {
   font-family: "Font Awesome 5 Brands";
 }
 
@@ -119,17 +131,20 @@ html, body {
 .navbar {
   background-color: white !important;
   height: 70px;
+  transition: 0.5s all !important;
 }
 
 .navbar-toggler:focus {
   text-decoration: none;
   outline: 0;
   box-shadow: transparent !important;
+  transition: 0.5s all !important;
 }
 
 .navbar-collapse {
   justify-content: space-between !important;
   text-align: center !important;
+  transition: 0.5s all !important;
 }
 
 .nav-link {
@@ -151,7 +166,7 @@ html, body {
 }
 
 a {
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-size: 16px !important;
   color: black !important;
   text-decoration: none;
@@ -190,7 +205,7 @@ a:hover {
 
 /* FOOTER */
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   .foot-elements li {
     font-size: 12px !important;
   }
@@ -200,7 +215,7 @@ footer {
   display: block;
   text-align: center;
   font-size: 0.75em;
-  bottom:0;
+  bottom: 0;
   width: 90%;
   height: 30px;
   margin: auto;
@@ -220,7 +235,7 @@ footer {
 
 /* HOME */
 
-@media screen and (min-width:1001px) and (max-width:1200px) {
+@media screen and (min-width: 1001px) and (max-width: 1200px) {
   .intro {
     margin: auto !important;
     width: 50% !important;
@@ -232,7 +247,7 @@ footer {
   }
 }
 
-@media screen and (min-width:769px) and (max-width:1000px) {
+@media screen and (min-width: 769px) and (max-width: 1000px) {
   .hero {
     padding-top: 20% !important;
     display: inherit !important;
@@ -264,7 +279,7 @@ footer {
     position: relative;
   }
   .weave {
-    display: none!important;
+    display: none !important;
     /* display: block !important;
     height: 20em !important;
     margin: auto !important;
@@ -319,7 +334,7 @@ footer {
   }
 }
 
-@media screen and (min-width:551px) and (max-width:768px) {
+@media screen and (min-width: 551px) and (max-width: 768px) {
   .hero {
     padding-top: 25% !important;
     display: inherit !important;
@@ -348,7 +363,7 @@ footer {
     position: relative;
   }
   .weave {
-    display: none!important;
+    display: none !important;
     /* display: block !important;
     height: 20em !important;
     margin: auto !important;
@@ -399,7 +414,7 @@ footer {
   }
 }
 
-@media screen and (max-width:550px) {
+@media screen and (max-width: 550px) {
   .hero {
     padding-top: 40% !important;
     display: inherit !important;
@@ -428,7 +443,7 @@ footer {
     position: relative;
   }
   .weave {
-    display: none!important;
+    display: none !important;
     /* display: block !important;
     height: 20em !important;
     margin: auto !important;
@@ -479,7 +494,7 @@ footer {
   }
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   .modal-content p {
     font-size: 12px !important;
     margin-bottom: 10px !important;
@@ -525,7 +540,12 @@ footer {
   width: 100%;
   height: 100%;
   backdrop-filter: blur(8px); /* Adjust the blur intensity as needed */
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust the background color and opacity as needed */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Adjust the background color and opacity as needed */
 }
 
 .modal-content {
@@ -536,7 +556,7 @@ footer {
   text-align: left;
   width: 70%;
   height: 60%;
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
 }
 
 .modal-content h2 {
@@ -544,7 +564,7 @@ footer {
   font-weight: bold;
   margin-bottom: 10px;
   text-align: center;
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
 }
 
 .modal-content p {
@@ -568,22 +588,27 @@ footer {
 }
 
 .hero {
-    padding-top: 12.5%;
-    display: flex;
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(10,232,132,0.19979866946778713) 61%, rgba(255,255,255,1) 100%);
-    background-size: cover;
-    height: 90vh;
+  padding-top: 12.5%;
+  display: flex;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(10, 232, 132, 0.19979866946778713) 61%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background-size: cover;
+  height: 90vh;
 }
 
 .intro {
-    width: 40%;
-    position: absolute;
-    margin-left: 5%;
+  width: 40%;
+  position: absolute;
+  margin-left: 5%;
 }
 
 .intro h1 {
-    font-size: 64px;
-    font-family: 'Libre Baskerville', serif;
+  font-size: 64px;
+  font-family: "Libre Baskerville", serif;
 }
 
 .ex-text {
@@ -595,7 +620,12 @@ footer {
   height: 25em;
   border-radius: 100%;
   margin-left: -4em;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.281) 0%, rgba(131, 244, 193, 0.322) 0%, rgba(7, 233, 131, 0.158) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.281) 0%,
+    rgba(131, 244, 193, 0.322) 0%,
+    rgba(7, 233, 131, 0.158) 100%
+  );
   box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.507);
   position: relative;
   display: flex;
@@ -609,7 +639,12 @@ footer {
   height: 45em;
   border-radius: 100%;
   margin-top: -20em;
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(131,244,194,1) 0%, rgba(7,233,133,1) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(131, 244, 194, 1) 0%,
+    rgba(7, 233, 133, 1) 100%
+  );
   box-shadow: inset 4px -1px 6px rgba(0, 0, 0, 0.322);
   position: relative;
   display: flex;
@@ -636,31 +671,31 @@ footer {
 }
 
 .demo {
-    width: 60%;
+  width: 60%;
 }
 
 .weave {
-    height: 25em;
-    margin-top: -7% !important;
-    margin-left: 15%;
+  height: 25em;
+  margin-top: -7% !important;
+  margin-left: 15%;
 }
 
 .start {
-    cursor: pointer;
-    font-family: 'PT Sans', sans-serif;
-    background-color: rgba(7,233,133,255);
-    color: white;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    box-shadow: -2px 1px 5px rgba(0, 0, 0, 0.473);
+  cursor: pointer;
+  font-family: "PT Sans", sans-serif;
+  background-color: rgba(7, 233, 133, 255);
+  color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  box-shadow: -2px 1px 5px rgba(0, 0, 0, 0.473);
 }
 
 .start:hover {
   transition: background-color 0.5s ease-in-out;
-  background-color: rgba(7,200,113,255);
+  background-color: rgba(7, 200, 113, 255);
 }
 
 .start a {
@@ -674,9 +709,9 @@ footer {
 }
 
 .section-2 {
-    margin-top: 5%;
-    margin-bottom: 10%;
-    font-family: 'PT Sans', sans-serif;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  font-family: "PT Sans", sans-serif;
 }
 
 .section-2 p:first-of-type {
@@ -684,14 +719,14 @@ footer {
 }
 
 .section-2 h1 {
-    font-size: 30px;
-    text-align: center;
-    font-family: 'PT Sans', sans-serif;
-    font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  font-family: "PT Sans", sans-serif;
+  font-weight: bold;
 }
 
 .section-2 h3 {
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: bold;
 }
 
@@ -730,19 +765,19 @@ footer {
 }
 
 .section-2 img {
-    margin-top: 5%;
-    width: 600px;
+  margin-top: 5%;
+  width: 600px;
 }
 
 .section-3 {
   margin-top: 10%;
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: bold;
   margin-bottom: 5em;
 }
 
 .section-3 h1 {
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: bold;
 }
 
@@ -767,7 +802,7 @@ footer {
 
 /* ABOUT */
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   .about-pg {
     width: 90% !important;
     margin-top: 3em !important;
@@ -784,12 +819,12 @@ footer {
 }
 
 .about-pg p {
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   color: grey;
 }
 
 .about-pg h1 {
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: bold;
 }
 
@@ -818,143 +853,349 @@ footer {
     color: white !important;
     box-shadow: none !important;
   }
+  .confirm-post {
+    text-align: left;
+    margin-right: 7em !important;
+    width: 30%;
+  }
+
+  .confirm-post h3 {
+    font-size: 20px;
+    border-bottom: 0.1rem solid #00000017;
+    padding: 0.4em 0em;
+  }
+
+  .confirm-post h4 {
+    font-size: 16px;
+  }
+
+  .confirm-post p {
+    font-size: 14px;
+  }
+
+  .modal-btns {
+    display: flex;
+    align-items: center;
+    margin-top: 1em;
+  }
+  .exit-modal {
+    position: absolute;
+    font-size: 22px;
+    font-family: inherit;
+    color: grey;
+    right: 1em !important;
+  }
+  .create-post-btn {
+    margin: auto;
+    cursor: pointer;
+    position: absolute !important;
+    left: 50% !important;
+    color: white;
+  }
+  .post-modal-content {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    font-family: "PT Sans", sans-serif;
+  }
+  .post-item-info {
+    display: block !important;
+    margin: auto;
+    justify-content: center;
+  }
+  .confirm-post {
+    text-align: left;
+    margin: auto !important;
+    margin-right: inherit !important;
+    width: 70% !important;
+  }
+  .genre-select {
+    text-align: left;
+    display: block;
+    margin: auto !important;
+    align-items: center;
+    width: 70% !important;
+    margin-top: 3em !important;
+  }
+  .modal-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+    margin-top: 1em;
+  }
+  .create-post-section {
+    position: absolute;
+    left: 42% !important;
+    top: 1.5em;
+  }
 }
 
 .post-form {
   margin: auto;
-  margin-top: 5%;
+  margin-top: 3%;
+}
+
+.create-post-section {
+  position: absolute;
+  left: 50%;
+  top: 1.5em;
+}
+
+.create-post-btn {
+  padding: 0.2em 0.6em;
+  margin: auto;
+  border: 3px solid #4caf50;
+  background: #4caf50;
+  border-radius: 0.8em;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 1s;
+  position: relative;
+  overflow: hidden;
+  color: white;
 }
 
 .title-input {
   margin: auto;
   color: black;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   box-shadow: inherit;
   border: none;
-  width: 70%;
+  width: 55%;
   font-size: 42px;
   height: 5rem;
+  resize: none;
   outline: 0px transparent;
-  border-bottom: 0.1rem solid #00000036;
+  border-bottom: 0.1rem solid #00000017;
+}
+
+.title-input:focus {
+  outline: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  box-shadow: inherit;
+  border-bottom: 0.1rem solid #0000002c;
 }
 
 .post-input {
   margin: auto;
   margin-top: 2rem;
+  resize: none !important;
   color: black;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   box-shadow: inherit;
-  width: 70%;
+  width: 55%;
   outline: 0px transparent;
-  border: 0.1rem solid #00000036;
-  height: 20rem;
+  border: none;
+  font-size: 20px;
+  height: 100vh; /* Set the height of the textarea to 100% of the viewport height */
+  overflow-y: auto; /* Enable vertical scrolling when the content exceeds the viewport height */
 }
 
-  .weaveBtn {
-    padding: 0.7em 0.9em;
-    margin: auto;
-    margin-top: 2em;
-    margin-bottom: 1.5em;
-    border: 3px solid #4caf50;
-    border-radius: 0.8em;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 1s;
-    position: relative;
-    overflow: hidden;
-    background: transparent;
-    color: black;
-    box-shadow: -3px 4px 5px rgba(0, 0, 0, 0.288);
-  }
-  
-  .weaveBtn::before {
-    content: "";
-    background-color: #4caf50;
-    height: 100%;
-    width: 0;
-    position: absolute;
-    top: 0;
-    left: -100%;
-    z-index: -1;
-    transition: width 0.6s ease-in;
-    transition-delay: 0.1s;
-  }
-  
-  .weaveBtn::after {
-    transition: none;
-  }
-  
-  .weaveBtn:hover::before {
-    width: 200%;
-    left: 0;
-  }
-  
-  .weaveBtn:hover {
-    /* animation: fill-border 1s ease-in-out forwards; */
-    color: #fff;
-    border: 3px solid #4caf50;
-    /* transition: border 1s ease-in-out; */
-    transition: color 0.3s ease-in-out;
-  }
-  
-  @keyframes fill-border {
-    0% {
-      border-top: 3px solid #4caf50;
-    }
-  
-    25% {
-      border-right: 3px solid #4caf50;
-    }
-  
-    50% {
-      border-bottom: 3px solid #4caf50;
-    }
-  
-    75% {
-      border-left: 3px solid #4caf50;
-    }
-  
-    100% {
-      border-top: 3px solid #4caf50;
-      border-right: 3px solid #4caf50;
-      border-bottom: 3px solid #4caf50;
-      border-left: 3px solid #4caf50;
-    }
+.post-modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.post-modal-content {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+  font-family: "PT Sans", sans-serif;
+}
+
+.confirm-post {
+  text-align: left;
+  margin-right: 15em;
+  width: 30%;
+}
+
+.confirm-post h3 {
+  font-size: 20px;
+  border-bottom: 0.1rem solid #00000017;
+  padding: 0.4em 0em;
+}
+
+.confirm-post h4 {
+  font-size: 16px;
+}
+
+.confirm-post p {
+  font-size: 14px;
+}
+
+.modal-btns {
+  display: flex;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.submit-btn,
+.cancel-btn {
+  margin-top: 1em;
+}
+
+.submit-btn {
+  background: #4caf50;
+  padding: 0.3em 0.7em;
+  border-radius: 1em;
+  color: white;
+}
+
+.submit-btn:hover {
+  background: #3f9141;
+  transition: 0.3s all;
+}
+
+.cancel-btn {
+  margin-left: 2em;
+}
+
+.exit-modal {
+  position: absolute;
+  font-size: 22px;
+  font-family: inherit;
+  color: grey;
+  right: 2em;
+}
+
+.post-item-info {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+
+.post-input:focus {
+  outline: none;
+  border: none;
+  box-shadow: inherit;
+}
+
+.weaveBtn {
+  padding: 0.7em 0.9em;
+  margin: auto;
+  margin-top: 2em;
+  margin-bottom: 1.5em;
+  border: 3px solid #4caf50;
+  border-radius: 0.8em;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 1s;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: black;
+  box-shadow: -3px 4px 5px rgba(0, 0, 0, 0.288);
+}
+
+.weaveBtn::before {
+  content: "";
+  background-color: #4caf50;
+  height: 100%;
+  width: 0;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  z-index: -1;
+  transition: width 0.6s ease-in;
+  transition-delay: 0.1s;
+}
+
+.weaveBtn::after {
+  transition: none;
+}
+
+.weaveBtn:hover::before {
+  width: 200%;
+  left: 0;
+}
+
+.weaveBtn:hover {
+  /* animation: fill-border 1s ease-in-out forwards; */
+  color: #fff;
+  border: 3px solid #4caf50;
+  /* transition: border 1s ease-in-out; */
+  transition: color 0.3s ease-in-out;
+}
+
+@keyframes fill-border {
+  0% {
+    border-top: 3px solid #4caf50;
   }
 
-  @media screen and (max-width:768px) {
-    .success h2 {
-      font-size: 42px;
-    }
-  
-    .success a {
-      text-decoration: underline;
-      font-size: 16px !important;
-    }
+  25% {
+    border-right: 3px solid #4caf50;
   }
 
-  .success {
-    height: 100vh;
-    padding-top: 15em;
+  50% {
+    border-bottom: 3px solid #4caf50;
   }
 
+  75% {
+    border-left: 3px solid #4caf50;
+  }
+
+  100% {
+    border-top: 3px solid #4caf50;
+    border-right: 3px solid #4caf50;
+    border-bottom: 3px solid #4caf50;
+    border-left: 3px solid #4caf50;
+  }
+}
+
+@media screen and (max-width: 768px) {
   .success h2 {
-    font-size: 52px;
+    font-size: 42px;
   }
 
   .success a {
     text-decoration: underline;
-    font-size: 22px !important;
+    font-size: 16px !important;
   }
+}
 
-  .genre-select {
-    width: 7em;
-    margin: auto;
-  }
+.success {
+  height: 100vh;
+  padding-top: 15em;
+}
+
+.success h2 {
+  font-size: 52px;
+}
+
+.success a {
+  text-decoration: underline;
+  font-size: 22px !important;
+}
+
+.genre-select {
+  text-align: left;
+  display: block;
+  align-items: center;
+  width: 30%;
+}
 
 /* SINGLE POST */
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   .post-section {
     display: inherit !important;
   }
@@ -995,7 +1236,7 @@ footer {
 }
 
 .single-post {
-  font-family: 'PT Sans', sans-serif !important;
+  font-family: "PT Sans", sans-serif !important;
   width: 40%;
   margin-left: 10%;
   margin-top: 7%;
@@ -1003,7 +1244,7 @@ footer {
 
 .author-section {
   display: flex;
-  font-family: 'PT Sans', sans-serif !important;
+  font-family: "PT Sans", sans-serif !important;
 }
 
 .created-by {
@@ -1014,7 +1255,7 @@ footer {
 .weave-on-off {
   display: flex;
   align-items: center;
-  font-family: 'PT Sans', sans-serif !important;
+  font-family: "PT Sans", sans-serif !important;
 }
 
 .toggle {
@@ -1027,7 +1268,6 @@ footer {
   margin-top: 0.6em;
   font-weight: normal;
 }
-
 
 .likes {
   display: flex;
@@ -1085,7 +1325,7 @@ footer {
   margin-left: 10%;
   text-align: left;
   width: 40%;
-  border-left: 1px solid rgba(7,233,133,255);
+  border-left: 1px solid rgba(7, 233, 133, 255);
   height: 100vh;
 }
 
@@ -1105,7 +1345,7 @@ footer {
 
 .author-info h3 {
   padding-top: 5%;
-  font-family: 'PT Sans', sans-serif !important;
+  font-family: "PT Sans", sans-serif !important;
   font-weight: bold;
   margin-left: 2rem;
 }
@@ -1126,7 +1366,7 @@ footer {
 
 /* LOGIN */
 
-@media screen and (max-width:900px) {
+@media screen and (max-width: 800px) {
   .login-cont {
     width: 80% !important;
     transform: translateY(1.15em) !important;
@@ -1139,11 +1379,44 @@ footer {
   }
 }
 
+@media screen and (min-width: 801px) and (max-width:1000px) {
+  .login-cont {
+    width: 65% !important;
+    transform: translateY(1.15em) !important;
+  }
+  .cool-bg {
+    background: none !important;
+  }
+  .enter-cred {
+    margin-top: 0.2rem !important;
+  }
+  .abs {
+    position: absolute;
+    top: 7em;
+    left: -2em;
+  }
+  .smallCirc {
+    width: 34em;
+    height: 34em;
+    left: -7em !important;
+  }
+}
+
 .cool-bg {
-  background: url("./images/coolbg.png");
-  height: 60vh;
-  background-size: contain;
-  background-repeat: no-repeat;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.abs {
+  position: absolute;
+  top: 7em;
+}
+
+.smallCirc {
+  width: 34em;
+  height: 34em;
+  overflow: hidden;
+  left: 7em;
 }
 
 .login-cont {
@@ -1155,8 +1428,8 @@ footer {
   border-radius: 1rem;
 }
 
-.login-cont h2 {  
-  font-family: 'PT Sans', sans-serif;
+.login-cont h2 {
+  font-family: "PT Sans", sans-serif;
   font-weight: bold;
   font-size: 48px;
   color: #59b85c;
@@ -1177,6 +1450,11 @@ footer {
   border: none;
   outline: 0px transparent;
   border-bottom: 0.5px solid grey;
+  transition: 0.4s all;
+}
+
+.cred-input:focus {
+  border: none;
 }
 
 .login-with {
@@ -1222,7 +1500,22 @@ footer {
 }
 
 .long-btn:hover {
-  background-image: linear-gradient(to right, rgb(250, 82, 82), rgb(250, 82, 82) 16.65%, rgb(190, 75, 219) 16.65%, rgb(190, 75, 219) 33.3%, rgb(76, 110, 245) 33.3%, rgb(76, 110, 245) 49.95%, rgb(64, 192, 87) 49.95%, rgb(64, 192, 87) 66.6%, rgb(250, 176, 5) 66.6%, rgb(250, 176, 5) 83.25%, rgb(253, 126, 20) 83.25%, rgb(253, 126, 20) 100%, rgb(250, 82, 82) 100%);
+  background-image: linear-gradient(
+    to right,
+    rgb(250, 82, 82),
+    rgb(250, 82, 82) 16.65%,
+    rgb(190, 75, 219) 16.65%,
+    rgb(190, 75, 219) 33.3%,
+    rgb(76, 110, 245) 33.3%,
+    rgb(76, 110, 245) 49.95%,
+    rgb(64, 192, 87) 49.95%,
+    rgb(64, 192, 87) 66.6%,
+    rgb(250, 176, 5) 66.6%,
+    rgb(250, 176, 5) 83.25%,
+    rgb(253, 126, 20) 83.25%,
+    rgb(253, 126, 20) 100%,
+    rgb(250, 82, 82) 100%
+  );
   animation: var(--timing) linear dance6123 infinite;
   transform: scale(1.1) translateY(-1px);
 }
@@ -1233,10 +1526,9 @@ footer {
   }
 }
 
-
 .signup-btn {
   background: transparent;
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: bold;
 }
 
@@ -1253,7 +1545,7 @@ footer {
 }
 
 .terms {
-  font-family: 'PT Sans', sans-serif !important;
+  font-family: "PT Sans", sans-serif !important;
   font-size: 16px;
 }
 
@@ -1263,7 +1555,7 @@ footer {
 
 /* NOT AUTH */
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   .not-logged {
     padding-top: 25% !important;
   }
@@ -1272,11 +1564,11 @@ footer {
 .not-logged {
   font-size: 24px;
   padding-top: 10%;
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
 }
 
 .or {
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-size: 14px;
   padding-top: 5px;
 }
@@ -1356,14 +1648,13 @@ footer {
 
 /* PROFILE */
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   .profile-info {
     display: block !important;
   }
   .prof-head {
     width: 90% !important;
     margin: auto !important;
-    margin-top: 2em !important;
   }
   .user-activity {
     width: 80% !important;
@@ -1475,19 +1766,18 @@ footer {
   float: left;
   margin-top: 1em;
   margin-left: 0.7em;
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
 }
 
 .user-identity {
   align-items: center;
 }
 
-
 .prof-head {
-    background-size: cover;
-    background:url('./images/header.png');
-    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.103);
-    height: 43vh;
+  background-size: cover;
+  background: url("./images/header.png");
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.103);
+  height: 43vh;
 }
 
 .user-items {
@@ -1506,7 +1796,7 @@ footer {
 .username {
   padding-top: 0.5em;
   font-size: 18px;
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
 }
 
 .social-media {
@@ -1523,7 +1813,8 @@ footer {
   color: red;
 }
 
-#tw, #fb {
+#tw,
+#fb {
   color: rgb(34, 99, 238);
 }
 
@@ -1540,7 +1831,6 @@ footer {
   padding: 0em 1em;
 }
 
-
 .prof-nav {
   width: 100%;
   display: inline-flex;
@@ -1553,7 +1843,7 @@ footer {
   padding: 0.1em 0.7em;
   border: none;
   background: transparent;
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-size: 18px;
 }
 
@@ -1605,7 +1895,7 @@ footer {
   padding: 1em;
   border-radius: 1em;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.171);
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
 }
 
 .user-activity {
@@ -1623,11 +1913,11 @@ footer {
 
 .user-activity h3 {
   font-size: 20px;
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
 }
 
-.user-activity p { 
-  font-family: 'PT Sans', sans-serif;
+.user-activity p {
+  font-family: "PT Sans", sans-serif;
 }
 
 .user-posts {
@@ -1636,12 +1926,12 @@ footer {
 }
 
 .user-posts h4 {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: bold;
 }
 
 .user-posts p {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .toggler {

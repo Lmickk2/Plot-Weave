@@ -11,6 +11,8 @@ const Weave = () => {
   const location = useLocation();
   const postTextFromURL = new URLSearchParams(location.search).get('postText');
   const [postText, setPostText] = useState("");
+  const [genre, setGenre] = useState("");
+  const [showModal, setShowModal] = useState(false); // State to control the visibility of the modal
 
   useEffect(() => {
     if (postTextFromURL) {
@@ -44,6 +46,7 @@ const Weave = () => {
       });
       setPostTitle("");
       setPostText("");
+      setShowModal(false);
     } catch (err) {
       console.error(err);
     }
@@ -62,12 +65,21 @@ const Weave = () => {
     }
   };
 
+  const handleCreateWeave = () => {
+    setShowModal(true); // Show the modal when the create post button is clicked
+  };
+
   return (
     <div>
       {Auth.loggedIn() ? (
         <>
       {!isPublished ? (
       <div className="post-form">
+        <div className="create-post-section">
+                <button className="create-post-btn" onClick={handleCreateWeave}>
+                  Publish
+                </button>
+              </div>
         <form
           id="spacing"
           className="flex-row justify-center justify-space-between-md align-center"
@@ -94,9 +106,9 @@ const Weave = () => {
               onChange={handleChange}
             />
           </div>
-          <button className="weaveBtn" type="submit">
+          {/* <button className="weaveBtn" type="submit">
             Create Post !
-          </button>
+          </button> */}
         </form>
       </div>
       ) : (
@@ -105,6 +117,59 @@ const Weave = () => {
           <Link to="/me">View Post</Link>
         </div>
       )}
+      {showModal && ( // Render the modal if showModal is true
+            <div className="post-modal">
+              <div className="post-modal-content">
+              <button
+                    className="exit-modal"
+                    onClick={() => setShowModal(false)}
+                  >
+                    X
+                  </button>
+                <div className="post-item-info">
+                  <div className="confirm-post">
+                    <h3>Preview Story</h3>
+                    <h4>{postTitle}</h4>
+                    <p>{postText.slice(0, 125)}...</p>
+                  </div>
+
+                  <div className="genre-select">
+                    <p>Select the genre that best fits your story.</p>
+                    <label htmlFor="genre">Genre:</label>
+                    <select
+                      name="genre"
+                      value={genre}
+                      onChange={(e) => setGenre(e.target.value)}
+                    >
+                      <option value="ACTION">Action</option>
+                      <option value="ADVENTURE">Adventure</option>
+                      <option value="COMEDY">Comedy</option>
+                      <option value="DRAMA">Drama</option>
+                      <option value="FANTASY">Fantasy</option>
+                      <option value="HORROR">Horror</option>
+                      <option value="MYSTERY">Mystery</option>
+                      <option value="OTHER">Other</option>
+                      <option value="ROMANCE">Romance</option>
+                      <option value="SCIENCE_FICTION">Sci-Fi</option>
+                      <option value="THRILLER">Thriller</option>
+                    </select>
+                    <div className="modal-btns">
+                  <button className="submit-btn" onClick={handleFormSubmit}>
+                    Publish
+                  </button>
+                  <button
+                    className="cancel-btn"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Cancel
+                  </button>
+                </div>
+                  </div>
+                </div>
+               
+              </div>
+            </div>
+          )}
         </>
       ) : (
         <NotAuthorized />
